@@ -2445,3 +2445,11 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+
+/* Override fade animations to ensure visibility */
+
+.fade-up, .fade-left, .fade-right {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
