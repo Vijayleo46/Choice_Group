@@ -13,9 +13,9 @@ const Impact = () => {
         <div className="counters-grid fade-up delay-1">
           <div className="counter-card">
             <div className="counter-icon">📅</div>
-            <div className="counter-num"><span className="counter" data-target="70" data-suffix="+">0</span></div>
+            <div className="counter-num"><span className="counter" data-target="60" data-suffix="+">0</span></div>
             <div className="counter-label">Years of Legacy</div>
-            <div className="counter-sub">Since 1953</div>
+            <div className="counter-sub">Since 1950</div>
           </div>
           <div className="counter-card">
             <div className="counter-icon">🌐</div>

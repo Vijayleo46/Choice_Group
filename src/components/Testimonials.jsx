@@ -1,94 +1,80 @@
-import React, { useState } from 'react';
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const Testimonials = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const total = 4;
+gsap.registerPlugin(ScrollTrigger)
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
-  };
+const testimonials = [
+  { text: "The Choice Group's commitment to quality and timeline delivery is unparalleled. They have been instrumental in our regional expansion strategy.", author: "James Chen", role: "VP Operations", initial: "J" },
+  { text: "A truly global partner with local expertise. Their marine exports division consistently delivers premium quality products that exceed expectations.", author: "Maria Rodriguez", role: "Procurement Director", initial: "M" },
+  { text: "Innovative, reliable, and deeply committed to sustainable practices. It's a privilege to partner with an organization that values long-term relationships.", author: "David Thompson", role: "CEO, Global Logistics", initial: "D" }
+]
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
-  };
+export default function Testimonials() {
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const cardsRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out'
+      })
+
+      gsap.from(cardsRef.current?.children, {
+        scrollTrigger: {
+          trigger: cardsRef.current,
+          start: 'top 75%',
+        },
+        opacity: 0,
+        y: 40,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: 'power3.out'
+      })
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
 
   return (
-    <section id="testimonials" className="section testimonials-section">
-      <div className="testimonials-bg"></div>
-      <div className="container">
-        <div className="section-header fade-up">
-          <div className="section-label">Client Success Stories</div>
-          <h2 className="section-title">Voices of <em>Trust</em></h2>
-          <p className="section-desc">What our long-standing partners and clients say about working with The Choice Group.</p>
+    <section ref={sectionRef} id="testimonials" className="testimonials">
+      <div className="testimonials-inner">
+        <div ref={headerRef} className="testimonials-header">
+          <div className="section-label">Client Success</div>
+          <h2 className="section-title">
+            Words of <span className="gold">Trust</span>
+          </h2>
+          <p className="section-desc" style={{ margin: '0 auto' }}>
+            Hear from our global partners and clients about their experience working with the Choice Group.
+          </p>
         </div>
-        <div className="testimonials-carousel fade-up delay-1">
-          <div className="tc-track" id="tc-track" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-            <div className={`testimonial-card ${activeIndex === 0 ? 'active' : ''}`}>
-              <div className="tc-quote">"</div>
-              <p className="tc-text">The Choice Group has been our strategic partner for over two decades. Their financial acumen, integrity, and ability to navigate complex markets have consistently delivered exceptional results for our business.</p>
-              <div className="tc-author">
-                <div className="tc-avatar">RK</div>
-                <div className="tc-info">
-                  <strong>Rajesh Kumar</strong>
-                  <span>CEO, Indo-Pacific Ventures</span>
+
+        <div ref={cardsRef} className="testimonials-track">
+          {testimonials.map((t, i) => (
+            <div key={i} className="testimonial-card">
+              <span className="quote-mark">"</span>
+              <p className="testimonial-text">{t.text}</p>
+              
+              <div className="stars">★★★★★</div>
+              
+              <div className="testimonial-author">
+                <div className="author-avatar">{t.initial}</div>
+                <div>
+                  <span className="author-name">{t.author}</span>
+                  <span className="author-company">{t.role}</span>
                 </div>
-                <div className="tc-stars">★★★★★</div>
               </div>
             </div>
-            <div className={`testimonial-card ${activeIndex === 1 ? 'active' : ''}`}>
-              <div className="tc-quote">"</div>
-              <p className="tc-text">What sets The Choice Group apart is their truly global perspective combined with deep local expertise. They helped us expand into Asian markets with confidence and precision — a partnership we treasure.</p>
-              <div className="tc-author">
-                <div className="tc-avatar">SM</div>
-                <div className="tc-info">
-                  <strong>Sarah Mitchell</strong>
-                  <span>Managing Director, North American Trade Partners</span>
-                </div>
-                <div className="tc-stars">★★★★★</div>
-              </div>
-            </div>
-            <div className={`testimonial-card ${activeIndex === 2 ? 'active' : ''}`}>
-              <div className="tc-quote">"</div>
-              <p className="tc-text">For over 15 years, The Choice Group has been our trusted wealth management advisor. Their personalized approach, market insight, and commitment to client success is truly world-class.</p>
-              <div className="tc-author">
-                <div className="tc-avatar">AV</div>
-                <div className="tc-info">
-                  <strong>Anil Varghese</strong>
-                  <span>Founder, Varghese Family Office</span>
-                </div>
-                <div className="tc-stars">★★★★★</div>
-              </div>
-            </div>
-            <div className={`testimonial-card ${activeIndex === 3 ? 'active' : ''}`}>
-              <div className="tc-quote">"</div>
-              <p className="tc-text">The digital transformation consulting we received from The Choice Group was nothing short of transformative. They combined strategic vision with flawless execution — exceeding every expectation.</p>
-              <div className="tc-author">
-                <div className="tc-avatar">KP</div>
-                <div className="tc-info">
-                  <strong>Kenji Tanaka</strong>
-                  <span>COO, Pacific Bridge Technologies, Japan</span>
-                </div>
-                <div className="tc-stars">★★★★★</div>
-              </div>
-            </div>
-          </div>
-          <div className="tc-controls">
-            <button className="tc-btn" onClick={handlePrev} aria-label="Previous testimonial">‹</button>
-            <div className="tc-dots">
-              {[0, 1, 2, 3].map((index) => (
-                <span 
-                  key={index} 
-                  className={`tc-dot ${activeIndex === index ? 'active' : ''}`} 
-                  onClick={() => setActiveIndex(index)}
-                ></span>
-              ))}
-            </div>
-            <button className="tc-btn" onClick={handleNext} aria-label="Next testimonial">›</button>
-          </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-};
-
-export default Testimonials;
+  )
+}

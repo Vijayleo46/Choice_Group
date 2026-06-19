@@ -1,76 +1,110 @@
-import React from 'react';
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const About = () => {
+gsap.registerPlugin(ScrollTrigger)
+
+export default function About() {
+  const sectionRef = useRef(null)
+  const imgRef = useRef(null)
+  const textRef = useRef(null)
+  const statsRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(imgRef.current, {
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+        opacity: 0, y: 100, duration: 1.2, ease: 'power3.out'
+      })
+      gsap.from(textRef.current?.children, {
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+        opacity: 0, x: 50, stagger: 0.15, duration: 0.8, ease: 'power2.out'
+      })
+      gsap.from(statsRef.current?.children, {
+        scrollTrigger: { trigger: statsRef.current, start: 'top 85%' },
+        scale: 0.8, opacity: 0, y: 30, stagger: 0.2, duration: 0.7, ease: 'back.out(1.5)'
+      })
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section id="about" className="section about-section">
-      <div className="container">
-        <div className="about-grid">
-          <div className="about-visual fade-left">
-            <div className="about-img-frame">
-              <div className="about-img-inner">
-                <div className="about-decorative-card glass-card">
-                  <div className="adc-icon">🏛️</div>
-                  <div className="adc-text">
-                    <strong>Heritage</strong>
-                    <span>Cochin, Kerala — Since 1953</span>
-                  </div>
-                </div>
-                <div className="about-timeline">
-                  <div className="atl-item">
-                    <span className="atl-year">1953</span>
-                    <span className="atl-event">Founded by O.C. Thomas – Choice Canning Co.</span>
-                  </div>
-                  <div className="atl-item">
-                    <span className="atl-year">1962</span>
-                    <span className="atl-event">Established in Cochin</span>
-                  </div>
-                  <div className="atl-item">
-                    <span className="atl-year">1970s</span>
-                    <span className="atl-event">Adopted freezing technology</span>
-                  </div>
-                  <div className="atl-item">
-                    <span className="atl-year">1990</span>
-                    <span className="atl-event">Added processing plant – value addition</span>
-                  </div>
-                  <div className="atl-item">
-                    <span className="atl-year">2000s</span>
-                    <span className="atl-event">Global footprint expansion</span>
-                  </div>
-                  <div className="atl-item">
-                    <span className="atl-year">Today</span>
-                    <span className="atl-event">World‑Class Conglomerate</span>
-                  </div>
-                </div>
-              </div>
-              <div className="about-float-badge">
-                <span className="afb-num">70+</span>
-                <span className="afb-text">Years<br />Legacy</span>
-              </div>
+    <section ref={sectionRef} id="about" className="about">
+      <div className="about-inner">
+        <div className="about-visual">
+          <div ref={imgRef} className="about-img-frame" style={{ 
+            backgroundImage: 'url("/warehouse.jpg.png")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,17,40,0.95) 0%, rgba(10,17,40,0.3) 50%, transparent 100%)' }} />
+            <div style={{ position: 'absolute', bottom: '24px', left: '24px', right: '24px', zIndex: 2 }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--gold-primary)', marginBottom: '6px' }}>Choice Group Global Operations</h3>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>State-of-the-art logistics and distribution center</p>
             </div>
           </div>
-          <div className="about-text fade-right">
-            <div className="section-label">Our Story</div>
-            <h2 className="section-title">A Legacy of <em>Excellence</em></h2>
-            <p className="about-lead">Established in 1953 by Mr. O.C. Thomas as Choice Canning Company, the Group has grown from modest beginnings into one of South India's largest and most diversified conglomerates.</p>
-            <p className="about-body">Headquartered in Cochin with branches across all major trading centers in South India, and international presence in the <strong>United States, Canada, South Korea, Singapore &amp; Japan</strong>, the Choice Group is serviced by over 1000 employees. Under the dynamic leadership of CMD <strong>Mr. Jose Thomas</strong>, the group has recorded impressive growth — registering a turnover of over <strong>₹600 Crores</strong> with marine exports as the flagship business.</p>
-            <p className="about-body">The multi-activity profile spans Marine Exports, Shipping, Trading, Real Estate, Prepared Frozen Meals, IT, Entertainment (JTPAC), and Education (Choice School) — driven by a spirit of innovation and an uncompromising commitment to quality.</p>
-            <div className="about-pillars">
-              <div className="pillar"><span className="pillar-icon">⚡</span><span>Innovation</span></div>
-              <div className="pillar"><span className="pillar-icon">🤝</span><span>Integrity</span></div>
-              <div className="pillar"><span className="pillar-icon">🌍</span><span>Global Reach</span></div>
-              <div className="pillar"><span className="pillar-icon">📈</span><span>Growth</span></div>
+          
+          <div className="about-corner-badge">
+            <span className="badge-num">60+</span>
+            <span className="badge-txt">Years of Trust</span>
+          </div>
+
+          <div className="about-float-pill">
+            <div className="pill-dot" />
+            <span className="pill-text">$250Million Annual Turnover</span>
+          </div>
+        </div>
+
+        <div ref={textRef} className="about-content">
+          <div className="section-label">About Choice Group</div>
+          <h2 className="section-title">
+            Driving <span className="gold">Excellence</span> Across Continents
+          </h2>
+          
+          <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1rem' }}>
+            Founded in <strong style={{ color: 'var(--gold-primary)' }}>1950</strong>, the Choice Group is headquartered in <strong style={{ color: 'var(--gold-primary)' }}>Kochi, Kerala</strong> and has grown into one of South India's most respected and diversified conglomerates.
+          </p>
+          
+          <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1rem' }}>
+            What started as a pioneering venture in the marine export industry has evolved into a multi-sector enterprise with business interests spanning <strong style={{ color: 'var(--text-primary)' }}>Marine Exports, Food Production, Logistics, Shipping, Construction, Education, Technology, and Financial Services</strong>.
+          </p>
+
+          <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1.5rem' }}>
+            With an annual turnover exceeding <strong style={{ color: 'var(--gold-primary)' }}>₹600 crores</strong>, a workforce of over <strong style={{ color: 'var(--gold-primary)' }}>1,000 professionals</strong>, and operations in <strong style={{ color: 'var(--gold-primary)' }}>India, USA, Canada, Japan, and South Korea</strong>, the Choice Group continues to set benchmarks in every industry it enters.
+          </p>
+
+          <div ref={statsRef} className="about-values">
+            <div className="value-item">
+              <div className="value-icon">⚓</div>
+              <div>
+                <span className="value-name">Marine Exports Pioneer</span>
+                <span className="value-desc">India's leading seafood exporter with EU/FDA approved facilities</span>
+              </div>
             </div>
-            <a href="#expertise" className="btn btn-primary mt-1">
-              <span>Discover Our Expertise</span>
-              <svg viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
+            <div className="value-item">
+              <div className="value-icon">🌍</div>
+              <div>
+                <span className="value-name">Global Operations</span>
+                <span className="value-desc">Offices in 5 countries across 3 continents</span>
+              </div>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">🏗️</div>
+              <div>
+                <span className="value-name">Infrastructure</span>
+                <span className="value-desc">World-class processing, cold storage & logistics centers</span>
+              </div>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">🎓</div>
+              <div>
+                <span className="value-name">Education</span>
+                <span className="value-desc">Choice School — redefining academic excellence in India</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  );
-};
-
-export default About;
+  )
+}

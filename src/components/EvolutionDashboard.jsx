@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const EvolutionDashboard = () => {
-  const [activeDecade, setActiveDecade] = useState('1960s');
+  const [activeDecade, setActiveDecade] = useState('1950s');
   const [activeFocus, setActiveFocus] = useState('Seafood & Canning');
   const [activeMs, setActiveMs] = useState('Founded in Cochin');
   const observerRef = useRef(null);
@@ -42,7 +42,7 @@ const EvolutionDashboard = () => {
     }
   };
 
-  const decades = ['1960s', '1970s', '1980s', '1990s', '2000s', '2010s'];
+  const decades = ['1950s', '1970s', '1980s', '1990s', '2000s', '2010s'];
 
   return (
     <section id="history" className="section history-section">
@@ -86,18 +86,18 @@ const EvolutionDashboard = () => {
 
           <div className="timeline-scroll-area">
             <div className="timeline-track">
-              <div className="milestone-card fade-up" data-decade="1960s" data-focus="Seafood & Canning" data-ms="Founded in Cochin" id="year-1962">
-                <div className="mc-year">1962</div>
+              <div className="milestone-card fade-up" data-decade="1950s" data-focus="Seafood & Canning" data-ms="Founded in Cochin" id="year-1950">
+                <div className="mc-year">1950</div>
                 <div className="mc-content">
                   <h4 className="mc-title">Founding of Choice Canning</h4>
                   <p className="mc-desc">Choice Canning Company is founded by O.C. Thomas, Madhavan Nair, and P.K. Nair with 25 employees, starting the group's legacy in Kerala.</p>
                   <div className="mc-image">
-                    <img src="file:///C:/Users/vijay/.gemini/antigravity-ide/brain/c596875b-8033-4c2e-bd56-2b8e43be67eb/milestone_1960s_1781259030246.png" onError={(e) => e.target.style.display='none'} alt="1960s Milestone" />
+                    <img src="file:///C:/Users/vijay/.gemini/antigravity-ide/brain/c596875b-8033-4c2e-bd56-2b8e43be67eb/milestone_1950s_1781259030246.png" onError={(e) => e.target.style.display='none'} alt="1950s Milestone" />
                   </div>
                 </div>
               </div>
 
-              <div className="milestone-card fade-up" data-decade="1960s" data-focus="Seafood Innovation" data-ms="Modern Block Frozen Tech" id="year-1969">
+              <div className="milestone-card fade-up" data-decade="1950s" data-focus="Seafood Innovation" data-ms="Modern Block Frozen Tech" id="year-1969">
                 <div className="mc-year">1969</div>
                 <div className="mc-content">
                   <h4 className="mc-title">Modern Block Frozen Technology</h4>

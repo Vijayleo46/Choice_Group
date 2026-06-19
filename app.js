@@ -659,7 +659,7 @@ function startHeroCounters() {
 })();
 
 console.log('%c THE CHOICE GROUP ', 'background:#1a4080;color:#e8c97a;font-size:18px;font-weight:bold;padding:8px 16px;border-radius:4px;');
-console.log('%c Est. 1962 · Cochin, Kerala, India ', 'color:#9aabcc;font-size:12px;');
+console.log('%c Est. 1950 · Cochin, Kerala, India ', 'color:#9aabcc;font-size:12px;');
 
 /* ══════════════════════════════════════════
    ENTERPRISE ANIMATION ENGINE v2.0

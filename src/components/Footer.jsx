@@ -1,131 +1,151 @@
-import React from 'react';
+import { useEffect, useRef, useState } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+gsap.registerPlugin(ScrollTrigger)
+
+export default function Footer() {
+  const footerRef   = useRef(null)
+  const contentRef  = useRef(null)
+  const inputRef    = useRef(null)
+  const btnRef      = useRef(null)
+  const successRef  = useRef(null)
+  const [email, setEmail]     = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError]     = useState(false)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(contentRef.current?.children, {
+        scrollTrigger: { trigger: footerRef.current, start: 'top 90%' },
+        opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: 'power2.out'
+      })
+    }, footerRef)
+    return () => ctx.revert()
+  }, [])
+
+  const handleSubscribe = (e) => {
+    e.preventDefault()
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    if (!valid) {
+      setError(true)
+      gsap.to(inputRef.current, {
+        x: [-8, 8, -6, 6, -4, 4, 0],
+        duration: 0.4, ease: 'power2.out'
+      })
+      return
+    }
+    setError(false)
+    // Button loading animation
+    gsap.to(btnRef.current, { scale: 0.95, duration: 0.1 })
+    gsap.to(btnRef.current, { scale: 1, duration: 0.2, delay: 0.1 })
+
+    setTimeout(() => {
+      setSubmitted(true)
+      gsap.set(successRef.current, { display: 'flex', opacity: 0, y: 10 })
+      gsap.to(successRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' })
+    }, 400)
+  }
 
   return (
-    <>
-      <footer id="footer">
-        <div className="footer-top">
-          <div className="container footer-grid">
-            <div className="footer-brand">
-              <div className="footer-logo">
-                <div className="fl-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="70 30 180 100" className="choice-logo-mark">
-                    <defs>
-                      <linearGradient id="redGradF" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ff3b5c" />
-                        <stop offset="100%" stopColor="#c3002f" />
-                      </linearGradient>
-                      <linearGradient id="blueGradF" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#2c30be" />
-                        <stop offset="100%" stopColor="#121450" />
-                      </linearGradient>
-                    </defs>
-                    <g className="logo-graphic-group">
-                      <path d="M 160,30 A 50,50 0 0,0 160,130 Z" fill="url(#redGradF)" />
-                      <path d="M 160,130 A 50,50 0 0,0 160,30 Z" fill="url(#blueGradF)" />
-                      <line x1="160" y1="30" x2="160" y2="130" stroke="#121450" strokeWidth="1.5" opacity="0.3" />
-                      <line x1="110" y1="80" x2="160" y2="80" stroke="url(#blueGradF)" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M 116.7,55 A 75,75 0 0,0 160,65" fill="none" stroke="url(#blueGradF)" strokeWidth="2.5" />
-                      <path d="M 116.7,105 A 75,75 0 0,1 160,95" fill="none" stroke="url(#blueGradF)" strokeWidth="2.5" />
-                      <line x1="160" y1="80" x2="210" y2="80" stroke="url(#redGradF)" strokeWidth="2.5" strokeLinecap="round" />
-                      <path d="M 160,65 A 75,75 0 0,0 203.3,55" fill="none" stroke="url(#redGradF)" strokeWidth="2.5" />
-                      <path d="M 160,95 A 75,75 0 0,1 203.3,105" fill="none" stroke="url(#redGradF)" strokeWidth="2.5" />
-                      <circle cx="176" cy="52" r="6.5" fill="url(#redGradF)" />
-                      <circle cx="176" cy="108" r="6.5" fill="url(#redGradF)" />
-                      <g fill="url(#blueGradF)" className="wing-left">
-                        <polygon points="70,66 105,66 105,76 79,76" />
-                        <polygon points="81,81 103,81 103,91 90,91" />
-                        <polygon points="92,96 101,96 101,106 100,106" />
-                      </g>
-                      <g fill="url(#blueGradF)" className="wing-right">
-                        <polygon points="250,66 215,66 215,76 241,76" />
-                        <polygon points="239,81 217,81 217,91 230,91" />
-                        <polygon points="228,96 219,96 219,106 220,106" />
-                      </g>
-                    </g>
-                  </svg>
-                </div>
-                <div className="fl-text">
-                  <span className="fl-name">THE CHOICE GROUP</span>
-                  <span className="fl-tag">Est. 1962 · Cochin, India</span>
-                </div>
-              </div>
-              <p className="footer-desc">One of South India's largest and most diversified business conglomerates. A legacy of trust, innovation, and excellence spanning six decades.</p>
-              <div className="footer-social">
-                <a href="#" className="fs-link" aria-label="LinkedIn">in</a>
-                <a href="#" className="fs-link" aria-label="Twitter">𝕏</a>
-                <a href="#" className="fs-link" aria-label="Facebook">f</a>
-                <a href="#" className="fs-link" aria-label="YouTube">▶</a>
-              </div>
-            </div>
-            <div className="footer-col">
-              <h4>Quick Links</h4>
-              <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#history">Our History</a></li>
-                <li><a href="#global">Global Presence</a></li>
-                <li><a href="#expertise">Our Expertise</a></li>
-                <li><a href="#leadership">Leadership</a></li>
-                <li><a href="#impact">Business Impact</a></li>
-                <li><a href="#news">News &amp; Insights</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Services</h4>
-              <ul>
-                <li><a href="#expertise">Financial Services</a></li>
-                <li><a href="#expertise">Wealth Management</a></li>
-                <li><a href="#expertise">Business Consulting</a></li>
-                <li><a href="#expertise">Strategic Investments</a></li>
-                <li><a href="#expertise">Technology Solutions</a></li>
-                <li><a href="#expertise">Corporate Advisory</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Global Presence</h4>
-              <ul>
-                <li><span className="fc-flag">🇮🇳</span> India (HQ)</li>
-                <li><span className="fc-flag">🇺🇸</span> United States</li>
-                <li><span className="fc-flag">🇨🇦</span> Canada</li>
-                <li><span className="fc-flag">🇰🇷</span> South Korea</li>
-                <li><span className="fc-flag">🇯🇵</span> Japan</li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Contact</h4>
-              <ul>
-                <li>📍 Cochin, Kerala, India</li>
-                <li>📞 +91 (484) 000-0000</li>
-                <li>📧 info@thechoicegroup.com</li>
-                <li>🌐 www.thechoicegroup.com</li>
-              </ul>
-              <a href="#contact" className="btn btn-ghost footer-cta">Get In Touch</a>
-            </div>
+    <footer ref={footerRef} id="footer" className="footer">
+      <div ref={contentRef} className="footer-inner">
+
+        <div className="footer-brand">
+          <div className="header-logo" style={{ marginBottom: '0.5rem' }}>
+            <img src="/Choice-Group-Logo (1).png.png" alt="Choice Group" style={{ height: '90px' }} />
+          </div>
+          <p>A legacy of trust, excellence, and innovation spanning over six decades. From marine exports to global conglomerates, we continue to push boundaries.</p>
+          <div className="footer-socials">
+            <a href="#" className="social-btn" aria-label="LinkedIn">💼</a>
+            <a href="#" className="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" className="social-btn" aria-label="Instagram">📷</a>
+            <a href="#" className="social-btn" aria-label="Facebook">📘</a>
           </div>
         </div>
-        <div className="footer-bottom">
-          <div className="container footer-bottom-inner">
-            <span>&copy; 2025 The Choice Group. All rights reserved. Established 1962, Cochin, Kerala, India.</span>
-            <div className="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Disclaimer</a>
-            </div>
+
+        <div className="footer-col">
+          <h4>Company</h4>
+          <div className="footer-links">
+            <a href="#about"      className="footer-link">About Us</a>
+            <a href="#leadership" className="footer-link">Leadership</a>
+            <a href="#evolution"  className="footer-link">Our Journey</a>
+            <a href="#expertise"  className="footer-link">Our Divisions</a>
+            <a href="#contact"    className="footer-link">Contact Us</a>
           </div>
         </div>
-      </footer>
 
-      <button id="scroll-top" aria-label="Scroll to top" onClick={scrollToTop}>
-        <svg viewBox="0 0 24 24">
-          <path d="M12 19V5M5 12l7-7 7 7" />
-        </svg>
-      </button>
-    </>
-  );
-};
+        <div className="footer-col">
+          <h4>Divisions</h4>
+          <div className="footer-links">
+            <a href="#expertise" className="footer-link">Marine Exports</a>
+            <a href="#expertise" className="footer-link">Food Production</a>
+            <a href="#expertise" className="footer-link">Logistics</a>
+            <a href="#expertise" className="footer-link">Construction</a>
+            <a href="#expertise" className="footer-link">Education</a>
+            <a href="#expertise" className="footer-link">JTPac Arts</a>
+          </div>
+        </div>
 
-export default Footer;
+        <div className="footer-col">
+          <h4>Stay Connected</h4>
+          <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1.2rem' }}>
+            Subscribe to receive the latest news and updates from the Choice Group.
+          </p>
+
+          {!submitted ? (
+            <form className="newsletter-form" onSubmit={handleSubscribe}>
+              <div style={{ position: 'relative' }}>
+                <input
+                  ref={inputRef}
+                  type="email"
+                  placeholder="Your email address"
+                  className="newsletter-input"
+                  value={email}
+                  onChange={e => { setEmail(e.target.value); setError(false) }}
+                  style={{ borderColor: error ? '#ef4444' : undefined }}
+                />
+                {error && (
+                  <p style={{ fontSize: '0.75rem', color: '#ef4444', marginTop: '4px' }}>
+                    Please enter a valid email address.
+                  </p>
+                )}
+              </div>
+              <button ref={btnRef} type="submit" className="newsletter-btn">
+                Subscribe →
+              </button>
+            </form>
+          ) : (
+            <div
+              ref={successRef}
+              style={{
+                display: 'none',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '16px',
+                background: 'rgba(34,197,94,0.08)',
+                border: '1px solid rgba(34,197,94,0.3)',
+                borderRadius: 'var(--radius-md)',
+              }}
+            >
+              <span style={{ fontSize: '1.5rem' }}>✅</span>
+              <div>
+                <p style={{ fontSize: '0.88rem', fontWeight: 600, color: '#16a34a' }}>Subscribed!</p>
+                <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Thank you for subscribing to Choice Group updates.</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <span className="footer-copy">© 2024 Choice Group. All Rights Reserved.</span>
+        <div className="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
+  )
+}
