@@ -10,19 +10,28 @@ export default function Why() {
   const gridRef = useRef(null)
   const visualRef = useRef(null)
 
+  // Make all elements visible and animate them
   useEffect(() => {
+    const elements = [];
+    if (headerRef.current) elements.push(headerRef.current);
+    if (visualRef.current) elements.push(visualRef.current);
+    if (gridRef.current?.children) elements.push(...gridRef.current.children);
+    // Ensure they are visible initially
+    gsap.set(elements, { opacity: 1, y: 0, x: 0, scale: 1 });
+
+    // GSAP animations (kept for smooth entry, can be removed if not needed)
     const ctx = gsap.context(() => {
-      // Header animation
+      // Header reveal
       gsap.from(headerRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 75%',
         },
         opacity: 0,
         y: 30,
         duration: 0.8,
-        ease: 'power3.out'
-      })
+        ease: 'power3.out',
+      });
 
       // Image reveal
       gsap.from(visualRef.current, {
@@ -34,8 +43,8 @@ export default function Why() {
         x: -50,
         scale: 0.95,
         duration: 1,
-        ease: 'power3.out'
-      })
+        ease: 'power3.out',
+      });
 
       // Grid cards stagger
       gsap.from(gridRef.current?.children, {
@@ -47,11 +56,11 @@ export default function Why() {
         y: 40,
         stagger: 0.1,
         duration: 0.7,
-        ease: 'power2.out'
-      })
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
+        ease: 'power2.out',
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section ref={sectionRef} id="why" className="why section" style={{ padding: '120px 5%', position: 'relative' }}>

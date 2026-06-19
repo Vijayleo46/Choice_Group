@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react'
+import './News.css';
+import { useEffect, useRef } from 'react';
+
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,6 +11,15 @@ export default function News() {
   const headerRef = useRef(null)
   const gridRef = useRef(null)
 
+  // Ensure all elements are visible immediately (no initial hidden state)
+  useEffect(() => {
+    const elems = [];
+    if (headerRef.current) elems.push(headerRef.current);
+    if (gridRef.current) elems.push(gridRef.current);
+    gsap.set(elems, { opacity: 1, y: 0 });
+  }, []);
+
+  // Scroll entrance animations
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(headerRef.current, {

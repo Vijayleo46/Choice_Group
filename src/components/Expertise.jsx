@@ -95,6 +95,14 @@ export default function Expertise() {
   const overlayRef  = useRef(null)
   const [active, setActive] = useState(null)
 
+  // Ensure all elements are visible immediately (no initial hidden state)
+  useEffect(() => {
+    const elems = [];
+    if (headerRef.current) elems.push(headerRef.current);
+    if (gridRef.current) elems.push(gridRef.current);
+    gsap.set(elems, { opacity: 1, y: 0 });
+  }, []);
+
   // Scroll entrance
   useEffect(() => {
     const ctx = gsap.context(() => {

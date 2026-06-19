@@ -5,14 +5,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Footer() {
-  const footerRef   = useRef(null)
-  const contentRef  = useRef(null)
-  const inputRef    = useRef(null)
-  const btnRef      = useRef(null)
-  const successRef  = useRef(null)
-  const [email, setEmail]     = useState('')
+  const footerRef = useRef(null)
+  const contentRef = useRef(null)
+  const inputRef = useRef(null)
+  const btnRef = useRef(null)
+  const successRef = useRef(null)
+  const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const [error, setError]     = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -67,11 +67,11 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Company</h4>
           <div className="footer-links">
-            <a href="#about"      className="footer-link">About Us</a>
+            <a href="#about" className="footer-link">About Us</a>
             <a href="#leadership" className="footer-link">Leadership</a>
-            <a href="#evolution"  className="footer-link">Our Journey</a>
-            <a href="#expertise"  className="footer-link">Our Divisions</a>
-            <a href="#contact"    className="footer-link">Contact Us</a>
+            <a href="#evolution" className="footer-link">Our Journey</a>
+            <a href="#expertise" className="footer-link">Our Divisions</a>
+            <a href="#contact" className="footer-link">Contact Us</a>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span className="footer-copy">© 2024 Choice Group. All Rights Reserved.</span>
+        <span className="footer-copy">© 2026 Choice Group. All Rights Reserved.</span>
         <div className="footer-legal">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Use</a>

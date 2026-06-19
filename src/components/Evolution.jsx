@@ -29,7 +29,7 @@ const timeline = [
   { year: '2014', event: 'Kinderland Expansion', desc: 'Choice Kinderland started at Parvana, Fort Kochi.' },
   { year: '2015', event: 'Multi-City School Launch', desc: 'Choice School Kozhikode launched. Kerala CM laid foundation for Thiruvalla campus. Kinderland expanded to 4 locations.' },
   { year: '2016', event: 'Educational Excellence', desc: 'Choice School Thiruvalla started. New Senior School block opened in Tripunithura campus.' },
-  { year: '2024', event: 'Legacy Continues', desc: 'Over 60 years of excellence spanning Marine Exports, Foods, Logistics, Shipping, Construction, Education & Technology.' }
+  { year: '2026', event: 'Legacy Continues', desc: 'Over 60 years of excellence spanning Marine Exports, Foods, Logistics, Shipping, Construction, Education & Technology.' }
 ]
 
 export default function Evolution() {
@@ -53,7 +53,7 @@ export default function Evolution() {
 
       // Items stagger in
       itemsRef.current.forEach((item, i) => {
-        if(item) {
+        if (item) {
           gsap.from(item, {
             scrollTrigger: {
               trigger: item,
@@ -85,7 +85,7 @@ export default function Evolution() {
 
         <div className="timeline">
           <div ref={lineRef} className="timeline-line" />
-          
+
           <div className="timeline-items">
             {timeline.map((item, i) => (
               <div key={item.year} className="timeline-item" ref={el => itemsRef.current[i] = el}>
@@ -96,7 +96,7 @@ export default function Evolution() {
                     <p className="timeline-desc">{item.desc}</p>
                   </div>
                 </div>
-                
+
                 <div className="timeline-center">
                   <div className="timeline-node">
                     <span style={{ fontSize: '10px' }}>✦</span>
