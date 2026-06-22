@@ -18,7 +18,7 @@ export default function Footer() {
     const ctx = gsap.context(() => {
       gsap.from(contentRef.current?.children, {
         scrollTrigger: { trigger: footerRef.current, start: 'top 90%' },
-        opacity: 0, y: 40, stagger: 0.15, duration: 0.8, ease: 'power2.out'
+        opacity: 1, y: 40, stagger: 0.15, duration: 0.8, ease: 'power2.out'
       })
     }, footerRef)
     return () => ctx.revert()

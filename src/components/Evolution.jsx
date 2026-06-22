@@ -43,29 +43,30 @@ export default function Evolution() {
       gsap.from(lineRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 50%',
+          start: 'top 70%',
           end: 'bottom 80%',
-          scrub: 1
+          scrub: 1,
         },
         scaleY: 0,
-        transformOrigin: 'top center'
+        transformOrigin: 'top center',
+        ease: 'none'
       })
 
-      // Items stagger in
-      itemsRef.current.forEach((item, i) => {
-        if (item) {
+      // Timeline items staggered fade
+      if (itemsRef.current.length > 0) {
+        itemsRef.current.forEach((item, i) => {
           gsap.from(item, {
             scrollTrigger: {
               trigger: item,
               start: 'top 85%',
             },
-            opacity: 0,
-            y: 50,
+            opacity: 1,
+            x: i % 2 === 0 ? -40 : 40,
             duration: 0.8,
             ease: 'power3.out'
           })
-        }
-      })
+        })
+      }
     }, sectionRef)
     return () => ctx.revert()
   }, [])

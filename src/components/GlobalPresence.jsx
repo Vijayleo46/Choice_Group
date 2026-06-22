@@ -13,27 +13,12 @@ export default function GlobalPresence() {
     const ctx = gsap.context(() => {
       // Map scale
       gsap.from(mapRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-        opacity: 0,
-        scale: 0.95,
-        duration: 1,
-        ease: 'power3.out'
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+        opacity: 1, scale: 0.9, duration: 1.2, ease: 'power3.out'
       })
-
-      // Info stagger
       gsap.from(infoRef.current?.children, {
-        scrollTrigger: {
-          trigger: infoRef.current,
-          start: 'top 80%',
-        },
-        opacity: 0,
-        x: 30,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'power2.out'
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+        opacity: 1, x: 40, stagger: 0.15, duration: 0.8, ease: 'power2.out'
       })
     }, sectionRef)
     return () => ctx.revert()

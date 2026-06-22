@@ -14,15 +14,15 @@ export default function About() {
     const ctx = gsap.context(() => {
       gsap.from(imgRef.current, {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
-        opacity: 0, y: 100, duration: 1.2, ease: 'power3.out'
+        opacity: 1, y: 100, duration: 1.2, ease: 'power3.out'
       })
       gsap.from(textRef.current?.children, {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
-        opacity: 0, x: 50, stagger: 0.15, duration: 0.8, ease: 'power2.out'
+        opacity: 1, x: 50, stagger: 0.15, duration: 0.8, ease: 'power2.out'
       })
       gsap.from(statsRef.current?.children, {
         scrollTrigger: { trigger: statsRef.current, start: 'top 85%' },
-        scale: 0.8, opacity: 0, y: 30, stagger: 0.2, duration: 0.7, ease: 'back.out(1.5)'
+        scale: 0.8, opacity: 1, y: 30, stagger: 0.2, duration: 0.7, ease: 'back.out(1.5)'
       })
     }, sectionRef)
     return () => ctx.revert()

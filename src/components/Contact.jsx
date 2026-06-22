@@ -14,15 +14,15 @@ export default function Contact() {
     const ctx = gsap.context(() => {
       gsap.from(headerRef.current, {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-        opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+        opacity: 1, y: 30, duration: 0.8, ease: 'power3.out'
       })
       gsap.from(infoRef.current, {
-        scrollTrigger: { trigger: infoRef.current, start: 'top 80%' },
-        opacity: 0, x: -40, duration: 0.9, ease: 'power3.out'
+        scrollTrigger: { trigger: infoRef.current, start: 'top 75%' },
+        opacity: 1, x: -40, duration: 0.9, ease: 'power3.out'
       })
       gsap.from(formRef.current, {
-        scrollTrigger: { trigger: formRef.current, start: 'top 80%' },
-        opacity: 0, x: 40, duration: 0.9, ease: 'power3.out'
+        scrollTrigger: { trigger: formRef.current, start: 'top 75%' },
+        opacity: 1, x: 40, duration: 0.9, ease: 'power3.out'
       })
     }, sectionRef)
     return () => ctx.revert()

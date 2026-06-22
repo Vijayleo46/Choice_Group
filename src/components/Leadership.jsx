@@ -61,11 +61,11 @@ export default function Leadership() {
     const ctx = gsap.context(() => {
       gsap.from(headerRef.current, {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-        opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+        opacity: 1, y: 30, duration: 0.8, ease: 'power3.out'
       })
       gsap.from(featuredRef.current, {
         scrollTrigger: { trigger: featuredRef.current, start: 'top 80%' },
-        opacity: 0, y: 60, duration: 1, ease: 'power3.out'
+        opacity: 1, y: 60, duration: 1, ease: 'power3.out'
       })
     }, sectionRef)
     return () => ctx.revert()

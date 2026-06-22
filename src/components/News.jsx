@@ -27,7 +27,7 @@ export default function News() {
           trigger: sectionRef.current,
           start: 'top 80%',
         },
-        opacity: 0,
+        opacity: 1,
         y: 30,
         duration: 0.8,
         ease: 'power3.out'
@@ -38,7 +38,7 @@ export default function News() {
           trigger: gridRef.current,
           start: 'top 75%',
         },
-        opacity: 0,
+        opacity: 1,
         y: 40,
         stagger: 0.15,
         duration: 0.8,

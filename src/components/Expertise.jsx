@@ -108,11 +108,11 @@ export default function Expertise() {
     const ctx = gsap.context(() => {
       gsap.from(headerRef.current, {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-        opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+        opacity: 1, y: 30, duration: 0.8, ease: 'power3.out'
       })
       gsap.from(gridRef.current?.children, {
         scrollTrigger: { trigger: gridRef.current, start: 'top 80%' },
-        opacity: 0, y: 50, stagger: 0.08, duration: 0.7, ease: 'power3.out'
+        opacity: 1, y: 50, stagger: 0.08, duration: 0.7, ease: 'power3.out'
       })
     }, sectionRef)
     return () => ctx.revert()
