@@ -59,7 +59,7 @@ export default function Testimonials() {
         <div ref={cardsRef} className="testimonials-track">
           {testimonials.map((t, i) => (
             <div key={i} className="testimonial-card">
-              <span className="quote-mark">"</span>
+              <span className="quote-mark">&quot;</span>
               <p className="testimonial-text">{t.text}</p>
               
               <div className="stars">★★★★★</div>

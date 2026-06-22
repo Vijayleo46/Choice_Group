@@ -47,7 +47,34 @@ export default function News() {
     }, sectionRef)
     return () => ctx.revert()
   }, [])
-
+  const newsItems = [
+    {
+      category: 'Corporate',
+      title: 'Choice Group Announces Strategic Expansion into Renewable Energy',
+      date: 'October 15, 2023',
+      emoji: '🗞️',
+      featured: true,
+    },
+    {
+      category: 'Awards',
+      title: 'Recognized for Excellence in Export Quality',
+      date: 'September 28, 2023',
+      emoji: '🏆',
+    },
+    {
+      category: 'Partnerships',
+      title: 'New Global Logistics Hub Opened in Dubai',
+      date: 'August 12, 2023',
+      emoji: '🤝',
+    },
+    // New item added as requested
+    {
+      category: 'Update',
+      title: 'Introducing Our New Sustainable Initiative',
+      date: 'September 30, 2023',
+      emoji: '📰',
+    },
+  ];
   return (
     <section ref={sectionRef} id="news" className="news">
       <div className="news-inner">
@@ -55,39 +82,23 @@ export default function News() {
           <div>
             <div className="section-label">Latest Updates</div>
             <h2 className="section-title">
-              News & <span className="gold">Insights</span>
+              News &amp; <span className="gold">Insights</span>
             </h2>
           </div>
           <button className="ghost-btn">View All News</button>
         </div>
 
         <div ref={gridRef} className="news-grid">
-          <div className="news-card featured">
-            <div className="news-img">🗞️</div>
-            <div className="news-body">
-              <span className="news-category">Corporate</span>
-              <h3 className="news-title">Choice Group Announces Strategic Expansion into Renewable Energy</h3>
-              <span className="news-date">October 15, 2023</span>
+          {newsItems.map((item, idx) => (
+            <div key={idx} className={`news-card${item.featured ? ' featured' : ''}`}> 
+              <div className="news-img">{item.emoji}</div>
+              <div className="news-body">
+                <span className="news-category">{item.category}</span>
+                <h3 className="news-title">{item.title}</h3>
+                <span className="news-date">{item.date}</span>
+              </div>
             </div>
-          </div>
-
-          <div className="news-card">
-            <div className="news-img">🏆</div>
-            <div className="news-body">
-              <span className="news-category">Awards</span>
-              <h3 className="news-title">Recognized for Excellence in Export Quality</h3>
-              <span className="news-date">September 28, 2023</span>
-            </div>
-          </div>
-
-          <div className="news-card">
-            <div className="news-img">🤝</div>
-            <div className="news-body">
-              <span className="news-category">Partnerships</span>
-              <h3 className="news-title">New Global Logistics Hub Opened in Dubai</h3>
-              <span className="news-date">August 12, 2023</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

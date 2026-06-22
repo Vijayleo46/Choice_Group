@@ -89,7 +89,7 @@ export default function Hero() {
             <span className="line" ref={el => linesRef.current[0] = el}>A Legacy of</span>
             <span className="line gold-gradient" ref={el => linesRef.current[1] = el}>Trust &amp; Quality</span>
             <span className="line" ref={el => linesRef.current[2] = el} style={{ fontSize: '0.5em', marginTop: '0.5rem' }}>
-              South India's Premier Diversified Conglomerate
+              South India&apos;s Premier Diversified Conglomerate
             </span>
           </h1>
 

@@ -62,7 +62,7 @@ export default function About() {
           </h2>
           
           <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1rem' }}>
-            Founded in <strong style={{ color: 'var(--gold-primary)' }}>1950</strong>, the Choice Group is headquartered in <strong style={{ color: 'var(--gold-primary)' }}>Kochi, Kerala</strong> and has grown into one of South India's most respected and diversified conglomerates.
+            Founded in <strong style={{ color: 'var(--gold-primary)' }}>1950</strong>, the Choice Group is headquartered in <strong style={{ color: 'var(--gold-primary)' }}>Kochi, Kerala</strong> and has grown into one of South India&apos;s most respected and diversified conglomerates.
           </p>
           
           <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1rem' }}>
@@ -76,9 +76,9 @@ export default function About() {
           <div ref={statsRef} className="about-values">
             <div className="value-item">
               <div className="value-icon">⚓</div>
-              <div>
+              <div className="value-text">
                 <span className="value-name">Marine Exports Pioneer</span>
-                <span className="value-desc">India's leading seafood exporter with EU/FDA approved facilities</span>
+                <span className="value-desc">India&apos;s leading seafood exporter with EU/FDA approved facilities</span>
               </div>
             </div>
             <div className="value-item">
@@ -90,9 +90,9 @@ export default function About() {
             </div>
             <div className="value-item">
               <div className="value-icon">🏗️</div>
-              <div>
+              <div className="value-text">
                 <span className="value-name">Infrastructure</span>
-                <span className="value-desc">World-class processing, cold storage & logistics centers</span>
+                <span className="value-desc">World-class processing, cold storage &amp; logistics centers</span>
               </div>
             </div>
             <div className="value-item">
