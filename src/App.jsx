@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -31,6 +33,7 @@ function App() {
         duration: 0.9,
         ease: 'power3.out',
         stagger: 0.12,
+        onComplete: () => ScrollTrigger.refresh()
       })
     }
   }, [introComplete])
