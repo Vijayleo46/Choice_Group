@@ -85,6 +85,7 @@ export default function Why() {
           <div ref={headerRef} className="section-header" style={{ marginBottom: '3rem' }}>
             <div className="section-label">The Choice Advantage</div>
             <h2 className="section-title">Why Choose <span className="gold">The Choice Group</span></h2>
+            <p className="section-desc">Six decades of trust, innovation, and global leadership — backed by a team of over 1,000 professionals dedicated to excellence.</p>
           </div>
 
           <div ref={gridRef} className="why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>

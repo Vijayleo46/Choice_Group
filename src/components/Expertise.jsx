@@ -88,11 +88,11 @@ const expertise = [
 ]
 
 export default function Expertise() {
-  const sectionRef  = useRef(null)
-  const headerRef   = useRef(null)
-  const gridRef     = useRef(null)
-  const panelRef    = useRef(null)
-  const overlayRef  = useRef(null)
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const gridRef = useRef(null)
+  const panelRef = useRef(null)
+  const overlayRef = useRef(null)
   const [active, setActive] = useState(null)
 
   // Ensure all elements are visible immediately (no initial hidden state)
@@ -103,17 +103,65 @@ export default function Expertise() {
     gsap.set(elems, { opacity: 1, y: 0 });
   }, []);
 
-  // Scroll entrance
+  // Scroll entrance and floating animations
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. Heading Fade-Up
       gsap.from(headerRef.current, {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-        opacity: 1, y: 30, duration: 0.8, ease: 'power3.out'
+        y: 80,
+        opacity: 0,
+        duration: 1.3,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 85%",
+          once: true
+        }
       })
+
+      // 2. Excellence Shimmer (Subtle opacity/color shift)
+      gsap.to(headerRef.current.querySelector('.gold'), {
+        opacity: 0.8,
+        textShadow: '0px 0px 15px rgba(196,158,63,0.6)',
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      })
+
+      // 3. Cards Stagger Entrance
       gsap.from(gridRef.current?.children, {
-        scrollTrigger: { trigger: gridRef.current, start: 'top 80%' },
-        opacity: 1, y: 50, stagger: 0.08, duration: 0.7, ease: 'power3.out'
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.18,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: "top 75%",
+          once: true
+        }
       })
+
+      // 4. Floating Icons
+      gsap.to('.expertise-icon', {
+        y: -8,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      })
+
+      // 5. Decorative Dots Floating
+      gsap.to('.dot', {
+        y: -15,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        stagger: 0.3,
+        ease: "sine.inOut"
+      })
+
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -123,31 +171,103 @@ export default function Expertise() {
     setActive(item)
     document.body.style.overflow = 'hidden'
     gsap.set(overlayRef.current, { display: 'block' })
-    gsap.set(panelRef.current, { x: '100%' })
-    gsap.to(overlayRef.current, { opacity: 1, duration: 0.4, ease: 'power2.out' })
-    gsap.to(panelRef.current, { x: '0%', duration: 0.6, ease: 'power4.out' })
-    // Animate panel children
-    gsap.from(panelRef.current.querySelectorAll('.panel-anim'), {
-      opacity: 0, y: 30, stagger: 0.08, duration: 0.5, ease: 'power3.out', delay: 0.3
+
+    // Set common centered positioning for ALL panels
+    gsap.set(panelRef.current, { 
+      x: '50%', y: '-50%', top: '50%', right: '50%', 
+      height: '85vh', borderRadius: '12px', rotationY: 0, opacity: 1 
     })
+    gsap.to(overlayRef.current, { opacity: 1, duration: 0.4, ease: 'power2.out' })
+
+    if (item.id === 'education') {
+      // Book open animation from the center
+      setTimeout(() => {
+        gsap.set('.book-cover.left', { rotationY: 0, transformOrigin: 'left center', transformPerspective: 1200 })
+        gsap.set('.book-cover.right', { rotationY: 0, transformOrigin: 'right center', transformPerspective: 1200 })
+        
+        gsap.to('.book-cover.left', { rotationY: -130, duration: 1.2, ease: 'power3.inOut' })
+        gsap.to('.book-cover.right', { rotationY: 130, duration: 1.2, ease: 'power3.inOut' })
+        
+        gsap.fromTo(panelRef.current.querySelectorAll('.panel-anim'), 
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, stagger: 0.08, duration: 0.8, ease: 'power3.out', delay: 0.6 }
+        )
+      }, 50)
+
+    } else if (item.id === 'foods') {
+      // Cloche (Food Cover) lift animation
+      setTimeout(() => {
+        gsap.set('.food-cloche', { y: '0%', opacity: 1 })
+        gsap.to('.food-cloche', { y: '-100%', opacity: 0, duration: 1.2, ease: 'power3.inOut', delay: 0.2 })
+        
+        // Content scale up like a revealed dish
+        gsap.fromTo(panelRef.current.querySelectorAll('.panel-anim'), 
+          { opacity: 0, scale: 0.8, y: 20 },
+          { opacity: 1, scale: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'back.out(1.2)', delay: 0.6 }
+        )
+      }, 50)
+
+    } else {
+      // Regular centered pop-in
+      gsap.fromTo(panelRef.current, 
+        { scale: 0.9, opacity: 0 }, 
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.2)' }
+      )
+      
+      // Animate panel children
+      gsap.fromTo(panelRef.current.querySelectorAll('.panel-anim'), 
+        { opacity: 0, y: 30, scale: 1 },
+        { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power3.out', delay: 0.3 }
+      )
+    }
   }
 
   // Close panel
   const closePanel = () => {
-    gsap.to(panelRef.current, { x: '100%', duration: 0.5, ease: 'power4.in' })
-    gsap.to(overlayRef.current, {
-      opacity: 0, duration: 0.4, ease: 'power2.in',
-      onComplete: () => {
-        gsap.set(overlayRef.current, { display: 'none' })
-        setActive(null)
-        document.body.style.overflow = ''
-      }
-    })
+    if (active?.id === 'education') {
+      // Close covers
+      gsap.to('.book-cover.left', { rotationY: 0, duration: 0.8, ease: 'power3.inOut' })
+      gsap.to('.book-cover.right', { rotationY: 0, duration: 0.8, ease: 'power3.inOut' })
+      gsap.to(panelRef.current, { opacity: 0, duration: 0.4, delay: 0.6 })
+      gsap.to(overlayRef.current, {
+        opacity: 0, duration: 0.4, delay: 0.6,
+        onComplete: resetPanel
+      })
+    } else if (active?.id === 'foods') {
+      // Drop the cloche back down
+      gsap.to('.food-cloche', { y: '0%', opacity: 1, duration: 0.6, ease: 'power3.inOut' })
+      gsap.to(panelRef.current, { opacity: 0, duration: 0.4, delay: 0.5 })
+      gsap.to(overlayRef.current, {
+        opacity: 0, duration: 0.4, delay: 0.5,
+        onComplete: resetPanel
+      })
+    } else {
+      // Standard centered fade-out
+      gsap.to(panelRef.current, { scale: 0.95, opacity: 0, duration: 0.3, ease: 'power3.in' })
+      gsap.to(overlayRef.current, {
+        opacity: 0, duration: 0.4, ease: 'power2.in', delay: 0.1,
+        onComplete: resetPanel
+      })
+    }
+  }
+
+  const resetPanel = () => {
+    gsap.set(overlayRef.current, { display: 'none' })
+    // Move it safely off-screen so it doesn't block clicks when inactive
+    gsap.set(panelRef.current, { opacity: 1, x: '100%', y: '0%', top: 0, right: 0, height: '100vh', borderRadius: '0px' })
+    setActive(null)
+    document.body.style.overflow = ''
   }
 
   return (
     <section ref={sectionRef} id="expertise" className="expertise">
       <div className="expertise-inner">
+        {/* Decorative Dots */}
+        <div className="decor-dots">
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+        </div>
 
         <div ref={headerRef} className="expertise-header">
           <div className="section-label">Areas of Expertise</div>
@@ -184,15 +304,33 @@ export default function Expertise() {
       />
 
       {/* Slide-in panel */}
-      <div ref={panelRef} className="expertise-panel">
+      <div ref={panelRef} className={`expertise-panel ${active?.id === 'education' ? 'book-mode' : ''}`}>
         {active && (
           <>
+            {active.id === 'education' && (
+              <>
+                <div className="book-cover left" style={{ position: 'absolute', top: 0, left: 0, width: '50%', height: '100%', background: '#0a1128', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(255,255,255,0.1)' }}>
+                  <div style={{ color: '#C49E3F', fontFamily: 'var(--font-display)', fontSize: '2rem' }}>Edu</div>
+                </div>
+                <div className="book-cover right" style={{ position: 'absolute', top: 0, right: 0, width: '50%', height: '100%', background: '#0a1128', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
+                  <div style={{ color: '#C49E3F', fontFamily: 'var(--font-display)', fontSize: '2rem' }}>cation</div>
+                </div>
+              </>
+            )}
+
+            {active.id === 'foods' && (
+              <div className="food-cloche" style={{ position: 'absolute', inset: 0, background: '#0a1128', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderBottom: '4px solid #C49E3F' }}>
+                <span style={{ fontSize: '4rem', marginBottom: '1rem' }}>🍽️</span>
+                <div style={{ color: '#C49E3F', fontFamily: 'var(--font-display)', fontSize: '1.8rem', letterSpacing: '0.05em' }}>Food Production</div>
+              </div>
+            )}
+
             <div
               className="expertise-panel-img panel-anim"
               style={{ backgroundImage: `url("${active.img}")` }}
             >
               <div className="expertise-panel-img-overlay" />
-              <button className="expertise-panel-close" onClick={closePanel}>✕</button>
+              <button className="expertise-panel-close" onClick={closePanel} style={{ zIndex: 20 }}>✕</button>
               <div className="expertise-panel-img-title panel-anim">
                 <span>{active.icon}</span>
                 <h2>{active.title}</h2>

@@ -35,8 +35,14 @@ export default function Header() {
   return (
     <>
       <header ref={headerRef} className={`header ${scrolled ? 'scrolled' : ''}`}>
-        <div ref={logoRef} className="header-logo" onClick={() => window.scrollTo(0, 0)}>
-          <img src="/Choice-Group-Logo (1).png.png" alt="Choice Group Logo" style={{ height: '80px' }} />
+        <div ref={logoRef} className="header-logo-wrapper" onClick={() => window.scrollTo(0, 0)}>
+          <div className="logo-container">
+            <img
+              src="/Choice-Group-Logo (1).png.png"
+              alt="Choice Group Logo"
+              className="logo-img"
+            />
+          </div>
         </div>
 
         <nav ref={linksRef} className="nav-links">

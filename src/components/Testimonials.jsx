@@ -27,18 +27,6 @@ export default function Testimonials() {
         duration: 0.8,
         ease: 'power3.out'
       })
-
-      gsap.from(cardsRef.current?.children, {
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: 'top 75%',
-        },
-        opacity: 1,
-        y: 40,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'power3.out'
-      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -56,23 +44,43 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="testimonials-track">
-          {testimonials.map((t, i) => (
-            <div key={i} className="testimonial-card">
-              <span className="quote-mark">&quot;</span>
-              <p className="testimonial-text">{t.text}</p>
-              
-              <div className="stars">★★★★★</div>
-              
-              <div className="testimonial-author">
-                <div className="author-avatar">{t.initial}</div>
-                <div>
-                  <span className="author-name">{t.author}</span>
-                  <span className="author-company">{t.role}</span>
+        <div className="testimonials-marquee">
+          <div className="marquee-group">
+            {testimonials.map((t, i) => (
+              <div key={i} className="testimonial-card">
+                <span className="quote-mark">&quot;</span>
+                <p className="testimonial-text">{t.text}</p>
+                
+                <div className="stars">★★★★★</div>
+                
+                <div className="testimonial-author">
+                  <div className="author-avatar">{t.initial}</div>
+                  <div>
+                    <span className="author-name">{t.author}</span>
+                    <span className="author-company">{t.role}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="marquee-group" aria-hidden="true">
+            {testimonials.map((t, i) => (
+              <div key={`dup-${i}`} className="testimonial-card">
+                <span className="quote-mark">&quot;</span>
+                <p className="testimonial-text">{t.text}</p>
+                
+                <div className="stars">★★★★★</div>
+                
+                <div className="testimonial-author">
+                  <div className="author-avatar">{t.initial}</div>
+                  <div>
+                    <span className="author-name">{t.author}</span>
+                    <span className="author-company">{t.role}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
