@@ -16,13 +16,26 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Cursor from './components/Cursor'
 import IntroScreen from './components/IntroScreen'
+import ChoiceEducation from './components/ChoiceEducation'
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false)
+  const [currentPage, setCurrentPage] = useState('home') // 'home' or 'education'
   const pageRef = useRef(null)
 
   useEffect(() => {
-    if (introComplete && pageRef.current) {
+    // Handle URL-based routing
+    const path = window.location.pathname
+    if (path.includes('education')) {
+      setCurrentPage('education')
+      setIntroComplete(true)
+    } else {
+      setCurrentPage('home')
+    }
+  }, [])
+
+  useEffect(() => {
+    if (introComplete && pageRef.current && currentPage === 'home') {
       const sections = pageRef.current.querySelectorAll(
         'header, main > section, footer'
       )
@@ -36,28 +49,37 @@ function App() {
         onComplete: () => ScrollTrigger.refresh()
       })
     }
-  }, [introComplete])
+  }, [introComplete, currentPage])
 
   return (
     <>
-      <IntroScreen onComplete={() => setIntroComplete(true)} />
-      <div ref={pageRef}>
-        <Cursor />
-        <Header />
-        <main>
-          <Hero />
-          <About />
-          <Why />
-          <Expertise />
-          <GlobalPresence />
-          <Evolution />
-          <Leadership />
-          <Testimonials />
-          <News />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      {currentPage === 'home' ? (
+        <>
+          <IntroScreen onComplete={() => setIntroComplete(true)} />
+          <div ref={pageRef}>
+            <Cursor />
+            <Header onNavigateToEducation={() => setCurrentPage('education')} />
+            <main>
+              <Hero />
+              <About />
+              <Why />
+              <Expertise />
+              <GlobalPresence />
+              <Evolution />
+              <Leadership />
+              <Testimonials />
+              <News />
+              <Contact />
+            </main>
+            <Footer />
+          </div>
+        </>
+      ) : (
+        <>
+          <Cursor />
+          <ChoiceEducation onBackToHome={() => setCurrentPage('home')} />
+        </>
+      )}
     </>
   )
 }

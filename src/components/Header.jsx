@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
-const links = ['About', 'Expertise', 'Global', 'Evolution', 'Leadership', 'News']
+const links = ['About', 'Expertise', 'Global', 'Evolution', 'Leadership', 'News', 'School']
 
-export default function Header() {
+export default function Header({ onNavigateToEducation }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef(null)
@@ -25,6 +25,12 @@ export default function Header() {
   }, [])
 
   const scrollTo = (id) => {
+    if (id === 'School') {
+      onNavigateToEducation?.()
+      setMenuOpen(false)
+      return
+    }
+    
     const el = document.getElementById(id.toLowerCase())
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' })
