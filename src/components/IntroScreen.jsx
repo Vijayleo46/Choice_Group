@@ -68,9 +68,9 @@ export default function IntroScreen({ onComplete }) {
           />
         </div>
 
-        <p ref={taglineRef} className="intro-tagline">
+        <h1 ref={taglineRef} className="intro-heading">
           A Legacy of Trust &amp; Quality
-        </p>
+        </h1>
 
         <div className="intro-progress-bar">
           <div ref={progressRef} className="intro-progress-fill" />
