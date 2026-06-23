@@ -6,10 +6,19 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Why() {
   const [isZoomed, setIsZoomed] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const gridRef = useRef(null)
   const visualRef = useRef(null)
+
+  const closeModal = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsZoomed(false);
+      setIsClosing(false);
+    }, 400); // Wait for the fade-out animation
+  }
 
   // Make all elements visible and animate them
   useEffect(() => {
@@ -23,42 +32,36 @@ export default function Why() {
     // GSAP animations (kept for smooth entry, can be removed if not needed)
     const ctx = gsap.context(() => {
       // Header reveal
-      gsap.from(headerRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-        opacity: 1,
-        y: 30,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          scrollTrigger: { trigger: headerRef.current, start: 'top 85%' },
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+        }
+      );
 
-      // Image reveal with zoom
+      // Visual reveal
       gsap.fromTo(
         visualRef.current,
         { opacity: 0, scale: 0.9, x: -50 },
         {
-          scrollTrigger: {
-            trigger: visualRef.current,
-            start: 'top 80%',
-          },
-          opacity: 1,
-          scale: 1,
-          x: 0,
-          duration: 1.2,
-          ease: 'power3.out',
+          scrollTrigger: { trigger: visualRef.current, start: 'top 80%' },
+          opacity: 1, scale: 1, x: 0, duration: 1.2, ease: 'power3.out',
         }
       );
 
-      // Grid cards stagger
-      gsap.from(gridRef.current?.children, {
+      // Grid items reveal
+      gsap.fromTo(gridRef.current.children, {
+        opacity: 0,
+        y: 40
+      }, {
         scrollTrigger: {
           trigger: gridRef.current,
           start: 'top 85%',
         },
         opacity: 1,
-        y: 40,
+        y: 0,
         stagger: 0.1,
         duration: 0.7,
         ease: 'power2.out',
@@ -67,15 +70,25 @@ export default function Why() {
     return () => ctx.revert();
   }, []);
 
-  // Listen for Escape key to close zoom modal
+  // Listen for Escape key and scroll events to close zoom modal
   useEffect(() => {
-    if (!isZoomed) return;
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setIsZoomed(false);
+    if (!isZoomed || isClosing) return;
+    
+    const handleClose = (e) => {
+      if (e.type === 'keydown' && e.key !== 'Escape') return;
+      closeModal();
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isZoomed]);
+
+    window.addEventListener('keydown', handleClose);
+    window.addEventListener('wheel', handleClose);
+    window.addEventListener('touchmove', handleClose);
+    
+    return () => {
+      window.removeEventListener('keydown', handleClose);
+      window.removeEventListener('wheel', handleClose);
+      window.removeEventListener('touchmove', handleClose);
+    };
+  }, [isZoomed, isClosing]);
 
   return (
     <section ref={sectionRef} id="why" className="why section" style={{ padding: '120px 5%', position: 'relative' }}>
@@ -143,10 +156,10 @@ export default function Why() {
       </div>
 
       {isZoomed && (
-        <div className="zoom-overlay" onClick={() => setIsZoomed(false)}>
-          <div className="zoom-container" onClick={(e) => e.stopPropagation()}>
+        <div className={`zoom-overlay${isClosing ? ' closing' : ''}`} onClick={closeModal}>
+          <div className={`zoom-container${isClosing ? ' closing' : ''}`} onClick={(e) => e.stopPropagation()}>
             <img src="/ceo.jpg.png" alt="JT Sir" className="zoom-img" />
-            <button className="zoom-close" onClick={() => setIsZoomed(false)}>✕</button>
+            <button className="zoom-close" onClick={closeModal}>✕</button>
           </div>
         </div>
       )}

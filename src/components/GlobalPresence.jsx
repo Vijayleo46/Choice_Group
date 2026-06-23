@@ -16,9 +16,9 @@ const COUNTRIES = [
     detail: 'Marine exports, logistics, education, construction & performing arts',
     color: '#C49E3F',
     glowColor: 'rgba(196,158,63,0.7)',
-    cx: 635, cy: 195,
-    // Simplified India SVG path (viewBox 0 0 1000 500)
-    paths: ['M 612,148 L 628,142 L 648,143 L 665,150 L 678,163 L 680,178 L 672,196 L 660,212 L 648,220 L 638,218 L 625,205 L 615,188 L 610,170 Z'],
+    // Kochi, Kerala — calibrated to pexels map image
+    cx: 718, cy: 248,
+    paths: [],
   },
   {
     id: 'usa',
@@ -29,8 +29,9 @@ const COUNTRIES = [
     detail: '#1 unbreaded shrimp brand · 46+ Shop Rite outlets',
     color: '#4A90D9',
     glowColor: 'rgba(74,144,217,0.7)',
-    cx: 185, cy: 165,
-    paths: ['M 80,100 L 270,90 L 290,115 L 280,145 L 255,165 L 225,185 L 190,200 L 160,210 L 130,205 L 100,185 L 75,160 L 70,130 Z'],
+    // New Jersey — calibrated to pexels map image
+    cx: 250, cy: 178,
+    paths: [],
   },
   {
     id: 'canada',
@@ -41,8 +42,9 @@ const COUNTRIES = [
     detail: 'Choice Canning Co. — seafood distribution across Canada',
     color: '#E05252',
     glowColor: 'rgba(224,82,82,0.7)',
-    cx: 150, cy: 112,
-    paths: ['M 75,60 L 270,55 L 285,80 L 275,105 L 250,120 L 215,130 L 170,128 L 130,120 L 90,108 L 70,85 Z'],
+    // Ontario, Canada — calibrated to pexels map image
+    cx: 222, cy: 150,
+    paths: [],
   },
   {
     id: 'japan',
@@ -53,8 +55,9 @@ const COUNTRIES = [
     detail: 'Premium seafood exports & marine product distribution',
     color: '#E05C7D',
     glowColor: 'rgba(224,92,125,0.7)',
-    cx: 833, cy: 112,
-    paths: ['M 820,100 L 838,97 L 848,107 L 845,120 L 832,124 L 819,118 Z'],
+    // Tokyo — calibrated to pexels map image
+    cx: 872, cy: 185,
+    paths: [],
   },
   {
     id: 'korea',
@@ -65,17 +68,18 @@ const COUNTRIES = [
     detail: 'S.India agent of Hyundai Merchant Marine (HMM)',
     color: '#7E57C2',
     glowColor: 'rgba(126,87,194,0.7)',
-    cx: 808, cy: 120,
-    paths: ['M 797,108 L 816,106 L 820,118 L 814,128 L 800,126 L 793,116 Z'],
+    // Seoul — calibrated to pexels map image
+    cx: 848, cy: 178,
+    paths: [],
   },
 ]
 
-/* Trade route connection lines (HQ → each country) */
+/* Trade route connection lines (HQ India → each country) */
 const ROUTES = [
-  { id: 'r-usa',    d: 'M 635,195 Q 400,80 185,165',   country: 'usa' },
-  { id: 'r-canada', d: 'M 635,195 Q 380,50 150,112',   country: 'canada' },
-  { id: 'r-japan',  d: 'M 635,195 Q 730,100 833,112',  country: 'japan' },
-  { id: 'r-korea',  d: 'M 635,195 Q 720,120 808,120',  country: 'korea' },
+  { id: 'r-usa',    d: 'M 718,248 Q 480,80 250,178',   country: 'usa' },
+  { id: 'r-canada', d: 'M 718,248 Q 460,50 222,150',   country: 'canada' },
+  { id: 'r-japan',  d: 'M 718,248 Q 800,140 872,185',  country: 'japan' },
+  { id: 'r-korea',  d: 'M 718,248 Q 785,160 848,178',  country: 'korea' },
 ]
 
 /* Simplified continent shapes */
@@ -215,12 +219,31 @@ export default function GlobalPresence() {
         <div className="global-layout-v2">
 
           {/* SVG Map */}
-          <div className="global-map-v2">
+          <div className="global-map-v2" style={{ position: 'relative' }}>
+            {/* World Map Photo Background - pexels */}
+            <img
+              src="/pexels-tima-miroshnichenko-5725589.jpg"
+              alt="World Map"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center center',
+                opacity: 0.22,
+                pointerEvents: 'none',
+                filter: 'sepia(0.4) hue-rotate(20deg) saturate(1.5) brightness(0.65)',
+                borderRadius: 'var(--radius-lg)',
+                zIndex: 0,
+              }}
+            />
             <svg
               ref={svgRef}
               viewBox="0 0 1000 500"
               xmlns="http://www.w3.org/2000/svg"
               className="world-svg-v2"
+              style={{ position: 'relative', zIndex: 10 }}
             >
               <defs>
                 {COUNTRIES.map(c => (
@@ -234,10 +257,7 @@ export default function GlobalPresence() {
                 </filter>
               </defs>
 
-              {/* Continent fills */}
-              {CONTINENTS.map((d, i) => (
-                <path key={i} d={d} className="continent-fill" />
-              ))}
+
 
               {/* Trade route curves */}
               {ROUTES.map(r => {
@@ -258,7 +278,7 @@ export default function GlobalPresence() {
                 )
               })}
 
-              {/* Country shapes */}
+              {/* Country location halos */}
               {COUNTRIES.map(c => (
                 <g
                   key={c.id}
@@ -268,17 +288,16 @@ export default function GlobalPresence() {
                   onMouseLeave={handleCountryLeave}
                   onClick={() => handleCountryClick(c)}
                 >
-                  {c.paths.map((d, pi) => (
-                    <path
-                      key={pi}
-                      data-country={c.id}
-                      d={d}
-                      fill={getPathFill(c)}
-                      stroke={c.color}
-                      strokeWidth={active?.id === c.id ? 2 : 1}
-                      style={{ transition: 'fill 0.3s, stroke-width 0.3s' }}
-                    />
-                  ))}
+                  <circle
+                    data-country={c.id}
+                    cx={c.cx}
+                    cy={c.cy}
+                    r={active?.id === c.id ? 25 : 18}
+                    fill={getPathFill(c)}
+                    stroke={c.color}
+                    strokeWidth={active?.id === c.id ? 2 : 1}
+                    style={{ transition: 'fill 0.3s, stroke-width 0.3s, r 0.3s' }}
+                  />
                 </g>
               ))}
 
@@ -337,7 +356,7 @@ export default function GlobalPresence() {
               })}
 
               {/* HQ star marker */}
-              <text x="634" y="185" textAnchor="middle"
+              <text x="718" y="238" textAnchor="middle"
                 fontSize="12" fill="#C49E3F"
                 style={{ filter: 'drop-shadow(0 0 4px rgba(196,158,63,0.8))' }}
               >★</text>
