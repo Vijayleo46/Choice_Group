@@ -33,18 +33,22 @@ export default function Why() {
         ease: 'power3.out',
       });
 
-      // Image reveal
-      gsap.from(visualRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-        opacity: 1,
-        x: -50,
-        scale: 0.95,
-        duration: 1,
-        ease: 'power3.out',
-      });
+      // Image reveal with zoom
+      gsap.fromTo(
+        visualRef.current,
+        { opacity: 0, scale: 0.9, x: -50 },
+        {
+          scrollTrigger: {
+            trigger: visualRef.current,
+            start: 'top 80%',
+          },
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+        }
+      );
 
       // Grid cards stagger
       gsap.from(gridRef.current?.children, {
@@ -64,15 +68,16 @@ export default function Why() {
 
   return (
     <section ref={sectionRef} id="why" className="why section" style={{ padding: '120px 5%', position: 'relative' }}>
-      <div className="why-inner" style={{ maxWidth: '1300px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem', alignItems: 'center' }}>
+      <div className="why-inner" style={{ maxWidth: '1300px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '4rem', alignItems: 'center' }}>
         
-        <div ref={visualRef} className="why-visual" style={{ position: 'relative', height: '600px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-gold)' }}>
+        <div ref={visualRef} className="why-visual" style={{ position: 'relative', height: '800px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-gold)' }}>
           <div style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url("/DSC_8013.jpg")',
-            backgroundSize: 'cover',
+            backgroundImage: 'url("/ceo.jpg.png")',
+            backgroundSize: '100% 100%',
             backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
           }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,23,42,0.95), transparent)' }} />
           <div style={{ position: 'absolute', bottom: '30px', left: '30px', right: '30px' }}>
