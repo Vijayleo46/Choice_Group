@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Why() {
+  const [isZoomed, setIsZoomed] = useState(false)
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const gridRef = useRef(null)
@@ -66,11 +67,36 @@ export default function Why() {
     return () => ctx.revert();
   }, []);
 
+  // Listen for Escape key to close zoom modal
+  useEffect(() => {
+    if (!isZoomed) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsZoomed(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isZoomed]);
+
   return (
     <section ref={sectionRef} id="why" className="why section" style={{ padding: '120px 5%', position: 'relative' }}>
       <div className="why-inner" style={{ maxWidth: '1300px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '4rem', alignItems: 'center' }}>
         
-        <div ref={visualRef} className="why-visual" style={{ position: 'relative', height: '800px', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-gold)' }}>
+        <div 
+          ref={visualRef} 
+          className="why-visual" 
+          role="button"
+          tabIndex={0}
+          onClick={() => setIsZoomed(true)}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsZoomed(true); }}
+          style={{ 
+            position: 'relative', 
+            height: '800px', 
+            borderRadius: 'var(--radius-lg)', 
+            overflow: 'hidden', 
+            border: '1px solid var(--border-gold)',
+            cursor: 'zoom-in'
+          }}
+        >
           <div style={{
             position: 'absolute',
             inset: 0,
@@ -115,6 +141,15 @@ export default function Why() {
         </div>
 
       </div>
+
+      {isZoomed && (
+        <div className="zoom-overlay" onClick={() => setIsZoomed(false)}>
+          <div className="zoom-container" onClick={(e) => e.stopPropagation()}>
+            <img src="/ceo.jpg.png" alt="JT Sir" className="zoom-img" />
+            <button className="zoom-close" onClick={() => setIsZoomed(false)}>✕</button>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
