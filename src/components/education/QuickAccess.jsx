@@ -20,11 +20,12 @@ const QuickAccess = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Glass cards entrance
+      // Glass cards entrance - from left
       gsap.fromTo('.quick-access-card',
-        { opacity: 0, y: 40, scale: 0.95 },
+        { opacity: 0, x: -100, y: 40, scale: 0.95 },
         {
           opacity: 1,
+          x: 0,
           y: 0,
           scale: 1,
           duration: 0.6,

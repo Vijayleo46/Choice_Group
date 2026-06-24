@@ -24,11 +24,12 @@ const GuidingPrinciples = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Card entrance animation
+      // Card entrance animation - from left
       gsap.fromTo('.principle-card',
-        { opacity: 0, y: 50, scale: 0.9 },
+        { opacity: 0, x: -100, y: 50, scale: 0.9 },
         {
           opacity: 1,
+          x: 0,
           y: 0,
           scale: 1,
           duration: 0.8,
@@ -70,7 +71,7 @@ const GuidingPrinciples = () => {
             <div key={idx} className="principle-card">
               <div className="principle-icon-wrapper">
                 <div className="principle-icon">
-                  {idx === 0 && <span>🧠</span>}
+                  {idx === 0 && <img src="/knowledge.jpg" alt="Knowledge" className="principle-image" />}
                   {idx === 1 && <span>💫</span>}
                   {idx === 2 && <span>❤️</span>}
                 </div>

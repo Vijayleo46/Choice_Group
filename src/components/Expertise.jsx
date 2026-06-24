@@ -129,8 +129,9 @@ export default function Expertise() {
         ease: "sine.inOut"
       })
 
-      // 3. Cards Stagger Entrance
+      // 3. Cards Stagger Entrance - from left
       gsap.from(gridRef.current?.children, {
+        x: -100,
         y: 100,
         opacity: 0,
         duration: 1,

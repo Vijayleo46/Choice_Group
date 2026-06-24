@@ -51,9 +51,10 @@ export default function Why() {
         }
       );
 
-      // Grid items reveal
+      // Grid items reveal - from left
       gsap.fromTo(gridRef.current.children, {
         opacity: 0,
+        x: -100,
         y: 40
       }, {
         scrollTrigger: {
@@ -61,6 +62,7 @@ export default function Why() {
           start: 'top 85%',
         },
         opacity: 1,
+        x: 0,
         y: 0,
         stagger: 0.1,
         duration: 0.7,

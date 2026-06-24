@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
-const links = ['About', 'Expertise', 'Global', 'Evolution', 'Leadership', 'News', 'School']
+const links = ['About', 'Academics', 'Campus Life', 'Leadership', 'News', 'Contact']
 
 export default function Header({ onNavigateToEducation }) {
   const [scrolled, setScrolled] = useState(false)
@@ -24,18 +24,31 @@ export default function Header({ onNavigateToEducation }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const scrollTo = (id) => {
-    if (id === 'School') {
+  const scrollTo = (label) => {
+    const targetMap = {
+      About: 'about',
+      Academics: 'expertise',
+      'Campus Life': null,
+      Leadership: 'leadership',
+      News: 'news',
+      Contact: 'contact'
+    }
+
+    if (label === 'Campus Life') {
       onNavigateToEducation?.()
       setMenuOpen(false)
       return
     }
-    
-    const el = document.getElementById(id.toLowerCase())
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      setMenuOpen(false)
+
+    const targetId = targetMap[label]
+    if (targetId) {
+      const el = document.getElementById(targetId)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
+
+    setMenuOpen(false)
   }
 
   return (
@@ -44,8 +57,8 @@ export default function Header({ onNavigateToEducation }) {
         <div ref={logoRef} className="header-logo-wrapper" onClick={() => window.scrollTo(0, 0)}>
           <div className="logo-container">
             <img
-              src="/Choice-Group-Logo (1).png.png"
-              alt="Choice Group Logo"
+              src="/schoollogo.jpg"
+              alt="School Logo"
               className="logo-img"
             />
           </div>
