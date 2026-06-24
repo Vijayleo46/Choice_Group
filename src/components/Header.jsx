@@ -57,8 +57,8 @@ export default function Header({ onNavigateToEducation }) {
         <div ref={logoRef} className="header-logo-wrapper" onClick={() => window.scrollTo(0, 0)}>
           <div className="logo-container">
             <img
-              src="/schoollogo.jpg"
-              alt="School Logo"
+              src="/Choice-Group-Logo (1).png.png"
+              alt="Choice Group Logo"
               className="logo-img"
             />
           </div>

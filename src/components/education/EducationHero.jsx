@@ -145,7 +145,7 @@ const EducationHero = () => {
           playsInline
           preload="auto"
         >
-          <source src="/school-hero.mp4" type="video/mp4" />
+          <source src="/Drone_video_showcasing_building_…_202606241709.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="hero-gradient-overlay"></div>
