@@ -24,7 +24,7 @@ const EducationHero = () => {
 
       // Headline fade-up
       gsap.fromTo('.hero-headline', 
-        { opacity: 0, y: 60 },
+        { opacity: 1, y: 60 },
         {
           opacity: 1,
           y: 0,
@@ -48,10 +48,11 @@ const EducationHero = () => {
 
       // Description
       gsap.fromTo('.hero-description',
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 30, color: '#ffffff' },
         {
           opacity: 1,
           y: 0,
+          color: '#000000',
           duration: 0.9,
           delay: 0.6,
           ease: 'power3.out'
@@ -135,6 +136,7 @@ const EducationHero = () => {
   return (
     <section className="edu-hero" ref={heroRef}>
       <div className="hero-bg-video">
+        <img className="hero-bg-image" src="/choice-kochi.jpg" alt="Choice School Kochi" />
         <video 
           className="hero-video"
           autoPlay 
