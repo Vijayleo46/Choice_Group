@@ -10,42 +10,87 @@ export default function Cursor() {
     const inner = innerRef.current
     if (!outer || !inner) return
 
+    // hide until first mouse move
+    gsap.set([outer, inner], { autoAlpha: 0, xPercent: -50, yPercent: -50 })
+
     let mouseX = 0, mouseY = 0
     let outerX = 0, outerY = 0
+    let rafId = null
+    let started = false
 
     const onMove = (e) => {
       mouseX = e.clientX
       mouseY = e.clientY
-      gsap.to(inner, { x: mouseX, y: mouseY, duration: 0.1, ease: 'power2.out' })
+
+      // snap inner dot immediately
+      gsap.set(inner, { x: mouseX, y: mouseY })
+
+      if (!started) {
+        started = true
+        outerX = mouseX
+        outerY = mouseY
+        gsap.set([outer, inner], { autoAlpha: 1 })
+      }
     }
 
     const tick = () => {
-      outerX += (mouseX - outerX) * 0.12
-      outerY += (mouseY - outerY) * 0.12
+      // lerp outer ring toward mouse
+      outerX += (mouseX - outerX) * 0.1
+      outerY += (mouseY - outerY) * 0.1
       gsap.set(outer, { x: outerX, y: outerY })
-      requestAnimationFrame(tick)
+      rafId = requestAnimationFrame(tick)
     }
 
-    const onEnter = () => {
-      outer.classList.add('hovering')
-      inner.classList.add('hovering')
+    const onEnterHover = () => {
+      gsap.to(outer, {
+        width: 56, height: 56,
+        borderColor: 'var(--gold-bright)',
+        backgroundColor: 'rgba(201,168,76,0.1)',
+        duration: 0.3, ease: 'power2.out',
+        overwrite: 'auto'
+      })
+      gsap.to(inner, {
+        width: 4, height: 4,
+        duration: 0.2, ease: 'power2.out',
+        overwrite: 'auto'
+      })
     }
 
-    const onLeave = () => {
-      outer.classList.remove('hovering')
-      inner.classList.remove('hovering')
+    const onLeaveHover = () => {
+      gsap.to(outer, {
+        width: 32, height: 32,
+        borderColor: 'var(--gold-primary)',
+        backgroundColor: 'transparent',
+        duration: 0.3, ease: 'power2.out',
+        overwrite: 'auto'
+      })
+      gsap.to(inner, {
+        width: 6, height: 6,
+        duration: 0.2, ease: 'power2.out',
+        overwrite: 'auto'
+      })
     }
 
-    window.addEventListener('mousemove', onMove)
-    document.querySelectorAll('a, button, [role="button"], .expertise-card, .leader-card, .testimonial-card').forEach(el => {
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-    })
+    // attach hover listeners using event delegation — works for dynamic elements too
+    const onDocEnter = (e) => {
+      const t = e.target.closest('a, button, [role="button"], .campus-card, .se-card, .exp-card, .expertise-card, .principle-card, .leader-card, .testimonial-card, .glass-card, .fcta-btn, .btn-learn-more')
+      if (t) onEnterHover()
+    }
+    const onDocLeave = (e) => {
+      const t = e.target.closest('a, button, [role="button"], .campus-card, .se-card, .exp-card, .expertise-card, .principle-card, .leader-card, .testimonial-card, .glass-card, .fcta-btn, .btn-learn-more')
+      if (t) onLeaveHover()
+    }
 
-    const raf = requestAnimationFrame(tick)
+    window.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseenter', onDocEnter, true)
+    document.addEventListener('mouseleave', onDocLeave, true)
+    rafId = requestAnimationFrame(tick)
+
     return () => {
       window.removeEventListener('mousemove', onMove)
-      cancelAnimationFrame(raf)
+      document.removeEventListener('mouseenter', onDocEnter, true)
+      document.removeEventListener('mouseleave', onDocLeave, true)
+      cancelAnimationFrame(rafId)
     }
   }, [])
 

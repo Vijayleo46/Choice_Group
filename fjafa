@@ -1,0 +1,143 @@
+[33mcommit 922225447d4c81168c05bf6d0c08b8f54583356a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Thu Jun 25 14:53:42 2026 +0530
+
+    new updated one
+
+[33mcommit 8266321f61ccdeb5143bb41a8f6a805379d73184[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Wed Jun 24 17:40:38 2026 +0530
+
+    new oneee
+
+[33mcommit a3dac90e73f389bb56078dfd21c60c7aaf36b9ea[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Wed Jun 24 16:30:50 2026 +0530
+
+    new onee
+
+[33mcommit 632919f28233ffdf9ddf059f5ae48d6a41155952[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Wed Jun 24 12:06:19 2026 +0530
+
+    new one
+
+[33mcommit e67387ddc28b778d5d151fc1c3398b2b97163b4b[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 17:37:36 2026 +0530
+
+    new updateeeee
+
+[33mcommit bad847915a16347cd4073f92526d741def9a9fb9[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 15:59:55 2026 +0530
+
+    new updateeee
+
+[33mcommit c688dd967815782871b5b8aba80e815999e4b31b[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 15:14:41 2026 +0530
+
+    new updateee
+
+[33mcommit 54c8da8c09a5dc4d4773c70a94c1fef6cd4805e3[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 15:02:30 2026 +0530
+
+    new update
+
+[33mcommit a30dc88e9dc3308570f06083470701102c1d8eef[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 14:54:33 2026 +0530
+
+    new update
+
+[33mcommit 840f71ba3bdc1ade4aba3a31b7ff03503fc7a00f[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 13:00:55 2026 +0530
+
+    update new imagee
+
+[33mcommit 281f5e2bdfc0dcfeed8eb384a0b2f70c3a370229[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 12:51:58 2026 +0530
+
+    update new image
+
+[33mcommit 92ee7d0e41208e2a327eca57b289ddadb884594b[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Tue Jun 23 10:37:53 2026 +0530
+
+    update new one
+
+[33mcommit 46acacdd14c8bec2e89517ab26abb0aad7596834[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Mon Jun 22 18:46:39 2026 +0530
+
+    Update Expertise animations, center panels, and tweak news section
+
+[33mcommit 439443163a00bc3963d35b08a10e5f5d10dd3a54[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Mon Jun 22 10:37:56 2026 +0530
+
+    Force opacity 100% on scroll sections
+
+[33mcommit ba304bbce834ca3a60a80952044c73025453fb64[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Mon Jun 22 10:29:52 2026 +0530
+
+    Fix GSAP scroll animations hiding content
+
+[33mcommit 92b98bcff50f02c49926c798838653480a609751[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Mon Jun 22 10:00:46 2026 +0530
+
+    Fix unescaped quotes and entites across components
+
+[33mcommit d86526e4876c570888f0333b1f2615e3d5626fa3[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 15:29:22 2026 +0530
+
+    updated in the new
+
+[33mcommit 51cc0a640ea4eb2a27187ff4e111a23a88ade680[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 14:50:38 2026 +0530
+
+    checkout: temporary commit for worktree checkout
+
+[33mcommit 837ae8d824be9b251399d302911d39c23ea27393[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 14:34:15 2026 +0530
+
+    Update news styling
+
+[33mcommit 252b4214193b080df0f4a81edc4f5a695426dfd2[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 13:03:58 2026 +0530
+
+    Add .gitignore to ignore node_modules, dist, and .env
+
+[33mcommit d822e780d7edccf1f0acf32c815a0d38588f3c02[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 12:47:01 2026 +0530
+
+    Add .gitignore to ignore node_modules, dist, and .env
+
+[33mcommit 27ac65353fe7e92858ea3b25d12c933737867412[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 12:27:36 2026 +0530
+
+    Your commit message
+
+[33mcommit d4e2a17e6c4800b14fc9b231b8103f05bc588d8c[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Fri Jun 19 12:17:15 2026 +0530
+
+    your commit
+
+[33mcommit e6b8e27c96a863a6083a3a42eafb5b03f1841569[m
+Author: Vijayleo46 <vijaymartin72@gmail.com>
+Date:   Mon Jun 15 17:57:18 2026 +0530
+
+    first commit
