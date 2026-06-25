@@ -67,23 +67,46 @@ const GuidingPrinciples = () => {
         </div>
 
         <div className="principles-grid">
-          {principles.map((principle, idx) => (
-            <div key={idx} className="principle-card">
-              <div className="principle-icon-wrapper">
-                <div className="principle-icon">
-                  {idx === 0 && <img src="/knowledge.jpg" alt="Knowledge" className="principle-image" />}
-                  {idx === 1 && <span>💫</span>}
-                  {idx === 2 && <span>❤️</span>}
+          {principles.map((principle, idx) => {
+            const hasBg = idx === 0 || idx === 1 || idx === 2
+            const bgImage = idx === 0 ? '/knowledge.jpg' : idx === 1 ? '/DSC_7389.jpg' : idx === 2 ? '/1H9A9006.jpg' : null
+            const circleImg = bgImage
+            const circleAlt = idx === 0 ? 'Knowledge' : idx === 1 ? 'Character' : 'Health'
+
+            return (
+              <div
+                key={idx}
+                className={`principle-card${hasBg ? ' principle-card--knowledge' : ''}`}
+                style={hasBg ? {
+                  backgroundImage: `url(${bgImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                } : {}}
+              >
+                {hasBg && <div className="principle-card-overlay" />}
+
+                <div className="principle-icon-wrapper">
+                  <div className="principle-icon">
+                    {hasBg ? (
+                      <div className="knowledge-circle">
+                        <img src={circleImg} alt={circleAlt} className="knowledge-circle-img" />
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className="icon-glow-circle"></div>
                 </div>
-                <div className="icon-glow-circle"></div>
+
+                <h3 className={`principle-title${hasBg ? ' principle-title--light' : ''}`}>
+                  {principle.title}
+                </h3>
+                <p className={`principle-description${hasBg ? ' principle-description--light' : ''}`}>
+                  {principle.description}
+                </p>
+
+                <div className="principle-accent"></div>
               </div>
-              
-              <h3 className="principle-title">{principle.title}</h3>
-              <p className="principle-description">{principle.description}</p>
-              
-              <div className="principle-accent"></div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

@@ -6,112 +6,148 @@ gsap.registerPlugin(ScrollTrigger)
 
 const EducationFooterCTA = () => {
   const sectionRef = useRef(null)
+  const videoRef   = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Headline
-      gsap.fromTo('.footer-cta-headline',
-        { opacity: 0, y: 40 },
+
+      // ── video parallax — subtle scale-up as user scrolls in ──
+      gsap.fromTo(videoRef.current,
+        { scale: 1.12 },
         {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
+          scale: 1,
+          ease: 'none',
           scrollTrigger: {
-            trigger: '.footer-cta-section',
-            start: 'top 70%',
-            markers: false
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'top top',
+            scrub: 1.5,
           }
         }
       )
 
-      // Subheadline
-      gsap.fromTo('.footer-cta-subheadline',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.footer-cta-section',
-            start: 'top 70%',
-            markers: false
-          }
+      // ── slow continuous drift on video once in view ──
+      gsap.to(videoRef.current, {
+        scale: 1.06,
+        duration: 18,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 65%',
+          once: true,
         }
+      })
+
+      // ── gold line draws in ──
+      tl.fromTo('.fcta-line',
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.7, ease: 'power3.out', transformOrigin: 'left center' }
       )
 
-      // Buttons
-      gsap.fromTo('.footer-cta-buttons button',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.4,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.footer-cta-section',
-            start: 'top 70%',
-            markers: false
-          }
-        }
+      // ── eyebrow label ──
+      tl.fromTo('.fcta-label',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        '-=0.3'
       )
 
-      // Animated background particles
-      gsap.to('.footer-particle',
-        {
-          y: -50,
-          opacity: 0.3,
-          duration: 4,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          stagger: 0.3
-        }
+      // ── headline words split-reveal ──
+      tl.fromTo('.fcta-headline',
+        { opacity: 0, y: 50, clipPath: 'inset(0 0 100% 0)' },
+        { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power4.out' },
+        '-=0.2'
       )
 
-      // Gradient animation
-      gsap.to('.footer-bg-gradient',
-        {
-          backgroundPosition: '200% center',
-          duration: 8,
-          repeat: -1,
-          ease: 'sine.inOut'
-        }
+      // ── subheadline ──
+      tl.fromTo('.fcta-sub',
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+        '-=0.4'
       )
+
+      // ── buttons stagger ──
+      tl.fromTo('.fcta-btn',
+        { opacity: 0, y: 20, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: 'back.out(1.5)' },
+        '-=0.3'
+      )
+
+      // ── scroll indicator bounce ──
+      gsap.to('.fcta-scroll-dot', {
+        y: 8, duration: 0.9, yoyo: true, repeat: -1, ease: 'sine.inOut'
+      })
+
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
 
   return (
-    <section className="footer-cta-section" ref={sectionRef}>
-      <div className="footer-bg-gradient"></div>
-      
-      <div className="container footer-cta-container">
-        <div className="footer-cta-content">
-          <h2 className="footer-cta-headline">Empowering Future Leaders Since 1991</h2>
-          <p className="footer-cta-subheadline">
-            Discover a learning environment where knowledge, character and wellbeing inspire lifelong success.
+    <section className="fcta-section" ref={sectionRef}>
+
+      {/* ── background video ── */}
+      <div className="fcta-video-wrap">
+        <video
+          ref={videoRef}
+          className="fcta-video"
+          src="/Drone_footage_school_campus_exte…_202606251156.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+        {/* layered gradients for depth */}
+        <div className="fcta-grad-top"    />
+        <div className="fcta-grad-bottom" />
+        <div className="fcta-grad-sides"  />
+      </div>
+
+      {/* ── content ── */}
+      <div className="fcta-content">
+        <div className="fcta-inner">
+
+          {/* decorative gold line */}
+          <div className="fcta-line" />
+
+          <p className="fcta-label">The Choice School · Est. 1991</p>
+
+          <h2 className="fcta-headline">
+            Empowering Future<br />Leaders Since 1991
+          </h2>
+
+          <p className="fcta-sub">
+            Discover a learning environment where knowledge, character<br />
+            and wellbeing inspire lifelong success.
           </p>
 
-          <div className="footer-cta-buttons">
-            <button className="btn btn-primary btn-large">Apply for Admission</button>
-            <button className="btn btn-secondary btn-large">Schedule a Campus Visit</button>
+          <div className="fcta-buttons">
+            <button className="fcta-btn fcta-btn--primary">
+              Apply for Admission
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <button className="fcta-btn fcta-btn--secondary">
+              Schedule a Campus Visit
+            </button>
           </div>
+
         </div>
       </div>
 
-      {/* Floating Particles */}
-      <div className="floating-particles footer-particles">
-        <div className="footer-particle"></div>
-        <div className="footer-particle"></div>
-        <div className="footer-particle"></div>
-        <div className="footer-particle"></div>
+      {/* scroll indicator */}
+      <div className="fcta-scroll-hint">
+        <div className="fcta-scroll-mouse">
+          <div className="fcta-scroll-dot" />
+        </div>
       </div>
+
     </section>
   )
 }

@@ -968,33 +968,46 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
    EXPERTISE
    ============================================= */
 .expertise {
-  padding: 120px 5%;
+  padding: 120px 40px;
   background: linear-gradient(180deg, #f8f6f1 0%, #ffffff 100%);
   position: relative;
 }
 
 .expertise-inner {
   max-width: 1300px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .expertise-header {
   text-align: center;
   margin-bottom: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .expertise-header .section-desc {
   margin: 0 auto;
+  max-width: 640px;
 }
 
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .expertise-card {
-  padding: 2.5rem 2rem;
+  width: 100%;
+  padding: 3.5rem 2.5rem;
+  min-height: 320px;
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);

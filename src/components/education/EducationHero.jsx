@@ -108,7 +108,8 @@ const EducationHero = () => {
       { el: '.stat-schools', end: 4 },
       { el: '.stat-kg', end: 8 },
       { el: '.stat-years', end: 30 },
-      { el: '.stat-students', end: 2000 }
+      { el: '.stat-students', end: 3500},
+      {el: '.stat-staff',end: 550},
     ]
 
     counters.forEach(counter => {
@@ -171,7 +172,7 @@ const EducationHero = () => {
           </div>
           <div className="stat-item">
             <div className="stat-value stat-kg">8</div>
-            <div className="stat-label">Kindergartens</div>
+            <div className="stat-label">Kindergardens</div>
           </div>
           <div className="stat-item">
             <div className="stat-value stat-years">30</div>
@@ -180,6 +181,10 @@ const EducationHero = () => {
           <div className="stat-item">
             <div className="stat-value stat-students">2000</div>
             <div className="stat-label">Students</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-value stat-staff">550</div>
+            <div className="stat-label">Staff</div>
           </div>
         </div>
 
