@@ -17,17 +17,20 @@ import Footer from './components/Footer'
 import Cursor from './components/Cursor'
 import IntroScreen from './components/IntroScreen'
 import ChoiceEducation from './components/ChoiceEducation'
+import BapatlaPage from './components/BapatlaPage'
 
 function App() {
-  const [introComplete, setIntroComplete] = useState(false) // Force intro to show
-  const [currentPage, setCurrentPage] = useState('home') // 'home' or 'education'
+  const [introComplete, setIntroComplete] = useState(false)
+  const [currentPage, setCurrentPage] = useState('home') // 'home' | 'education' | 'bapatla'
   const pageRef = useRef(null)
 
   useEffect(() => {
-    // Handle URL-based routing
     const path = window.location.pathname
     if (path.includes('education')) {
       setCurrentPage('education')
+      setIntroComplete(true)
+    } else if (path.includes('bapatla')) {
+      setCurrentPage('bapatla')
       setIntroComplete(true)
     } else {
       setCurrentPage('home')
@@ -46,40 +49,52 @@ function App() {
         duration: 0.9,
         ease: 'power3.out',
         stagger: 0.12,
-        onComplete: () => ScrollTrigger.refresh()
+        onComplete: () => ScrollTrigger.refresh(),
       })
     }
   }, [introComplete, currentPage])
 
+  if (currentPage === 'education') {
+    return (
+      <>
+        <Cursor />
+        <ChoiceEducation onBackToHome={() => setCurrentPage('home')} />
+      </>
+    )
+  }
+
+  if (currentPage === 'bapatla') {
+    return (
+      <>
+        <Cursor />
+        <BapatlaPage onBackToHome={() => setCurrentPage('home')} />
+      </>
+    )
+  }
+
   return (
     <>
-      {currentPage === 'home' ? (
-        <>
-          <IntroScreen onComplete={() => setIntroComplete(true)} />
-          <div ref={pageRef}>
-            <Cursor />
-            <Header onNavigateToEducation={() => setCurrentPage('education')} />
-            <main>
-              <Hero />
-              <About />
-              <Why />
-              <Expertise />
-              <GlobalPresence />
-              <Evolution />
-              <Leadership />
-              <Testimonials />
-              <News />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
-        </>
-      ) : (
-        <>
-          <Cursor />
-          <ChoiceEducation onBackToHome={() => setCurrentPage('home')} />
-        </>
-      )}
+      <IntroScreen onComplete={() => setIntroComplete(true)} />
+      <div ref={pageRef}>
+        <Cursor />
+        <Header
+          onNavigateToEducation={() => setCurrentPage('education')}
+          onNavigateToBapatla={() => setCurrentPage('bapatla')}
+        />
+        <main>
+          <Hero />
+          <About />
+          <Why />
+          <Expertise />
+          <GlobalPresence />
+          <Evolution />
+          <Leadership />
+          <Testimonials />
+          <News />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

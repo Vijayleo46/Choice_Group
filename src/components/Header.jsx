@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
-const links = ['About', 'Academics', 'Campus Life', 'Leadership', 'News', 'Contact']
+const links = ['About', 'Bapatla', 'Academics', 'Campus Life', 'Leadership', 'News', 'Contact']
 
-export default function Header({ onNavigateToEducation }) {
+export default function Header({ onNavigateToEducation, onNavigateToBapatla }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const headerRef = useRef(null)
   const logoRef = useRef(null)
   const linksRef = useRef(null)
@@ -19,7 +20,22 @@ export default function Header({ onNavigateToEducation }) {
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50)
+
+      const sections = ['about', 'expertise', 'leadership', 'news', 'contact']
+      const current = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom > 100
+        }
+        return false
+      })
+
+      if (current) setActiveSection(current)
+    }
+
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -34,6 +50,12 @@ export default function Header({ onNavigateToEducation }) {
       Contact: 'contact'
     }
 
+    if (label === 'Bapatla') {
+      onNavigateToBapatla?.()
+      setMenuOpen(false)
+      return
+    }
+
     if (label === 'Campus Life') {
       onNavigateToEducation?.()
       setMenuOpen(false)
@@ -45,6 +67,7 @@ export default function Header({ onNavigateToEducation }) {
       const el = document.getElementById(targetId)
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        document.title = 'Choice Group - Marine Exports, Education & Construction'
       }
     }
 
@@ -65,11 +88,26 @@ export default function Header({ onNavigateToEducation }) {
         </div>
 
         <nav ref={linksRef} className="nav-links">
-          {links.map(l => (
-            <button key={l} className="nav-link" onClick={() => scrollTo(l)}>
-              {l}
-            </button>
-          ))}
+          {links.map(l => {
+            const sectionMap = {
+              About: 'about',
+              Academics: 'expertise',
+              Leadership: 'leadership',
+              News: 'news',
+              Contact: 'contact'
+            }
+            const isActive = sectionMap[l] === activeSection
+
+            return (
+              <button
+                key={l}
+                className={`nav-link ${isActive ? 'active' : ''}`}
+                onClick={() => scrollTo(l)}
+              >
+                {l}
+              </button>
+            )
+          })}
         </nav>
 
         <div ref={ctaRef} className="nav-right">
@@ -86,11 +124,26 @@ export default function Header({ onNavigateToEducation }) {
       </header>
 
       <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
-        {links.map(l => (
-          <button key={l} className="nav-link" onClick={() => scrollTo(l)}>
-            {l}
-          </button>
-        ))}
+        {links.map(l => {
+          const sectionMap = {
+            About: 'about',
+            Academics: 'expertise',
+            Leadership: 'leadership',
+            News: 'news',
+            Contact: 'contact'
+          }
+          const isActive = sectionMap[l] === activeSection
+
+          return (
+            <button
+              key={l}
+              className={`nav-link ${isActive ? 'active' : ''}`}
+              onClick={() => scrollTo(l)}
+            >
+              {l}
+            </button>
+          )
+        })}
         <button className="nav-cta" onClick={() => scrollTo('footer')}>
           Contact Us
         </button>

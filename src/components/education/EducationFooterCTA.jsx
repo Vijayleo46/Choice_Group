@@ -13,7 +13,7 @@ const EducationFooterCTA = () => {
 
       // ── video parallax — subtle scale-up as user scrolls in ──
       gsap.fromTo(videoRef.current,
-        { scale: 1.12 },
+        { scale: 1.06 },
         {
           scale: 1,
           ease: 'none',
@@ -21,15 +21,15 @@ const EducationFooterCTA = () => {
             trigger: sectionRef.current,
             start: 'top bottom',
             end: 'top top',
-            scrub: 1.5,
+            scrub: 2.5,
           }
         }
       )
 
       // ── slow continuous drift on video once in view ──
       gsap.to(videoRef.current, {
-        scale: 1.06,
-        duration: 18,
+        scale: 1.04,
+        duration: 22,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
@@ -46,35 +46,35 @@ const EducationFooterCTA = () => {
       // ── gold line draws in ──
       tl.fromTo('.fcta-line',
         { scaleX: 0 },
-        { scaleX: 1, duration: 0.7, ease: 'power3.out', transformOrigin: 'left center' }
+        { scaleX: 1, duration: 0.5, ease: 'power3.out', transformOrigin: 'left center' }
       )
 
       // ── eyebrow label ──
       tl.fromTo('.fcta-label',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-        '-=0.3'
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' },
+        '-=0.2'
       )
 
       // ── headline words split-reveal ──
       tl.fromTo('.fcta-headline',
-        { opacity: 0, y: 50, clipPath: 'inset(0 0 100% 0)' },
-        { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.9, ease: 'power4.out' },
+        { opacity: 0, y: 40, clipPath: 'inset(0 0 100% 0)' },
+        { opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)', duration: 0.65, ease: 'power4.out' },
         '-=0.2'
       )
 
       // ── subheadline ──
       tl.fromTo('.fcta-sub',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
-        '-=0.4'
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
+        '-=0.3'
       )
 
       // ── buttons stagger ──
       tl.fromTo('.fcta-btn',
-        { opacity: 0, y: 20, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: 'back.out(1.5)' },
-        '-=0.3'
+        { opacity: 0, y: 16, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.45, stagger: 0.1, ease: 'back.out(1.5)' },
+        '-=0.25'
       )
 
       // ── scroll indicator bounce ──
@@ -101,6 +101,7 @@ const EducationFooterCTA = () => {
           loop
           playsInline
           preload="auto"
+          onLoadedData={(e) => { e.target.playbackRate = 0.7 }}
         />
         {/* layered gradients for depth */}
         <div className="fcta-grad-top"    />
