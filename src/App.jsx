@@ -19,7 +19,7 @@ import IntroScreen from './components/IntroScreen'
 import ChoiceEducation from './components/ChoiceEducation'
 
 function App() {
-  const [introComplete, setIntroComplete] = useState(false)
+  const [introComplete, setIntroComplete] = useState(false) // Force intro to show
   const [currentPage, setCurrentPage] = useState('home') // 'home' or 'education'
   const pageRef = useRef(null)
 
