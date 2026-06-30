@@ -1,0 +1,47 @@
+.kindergarten-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.kindergarten-bg-slider {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.kindergarten-bg-slider .bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+}
+
+.kindergarten-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+}
+
+.close-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--gold-primary);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}

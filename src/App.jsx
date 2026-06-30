@@ -75,8 +75,8 @@ function App() {
   return (
     <>
       <IntroScreen onComplete={() => setIntroComplete(true)} />
+      <Cursor />
       <div ref={pageRef}>
-        <Cursor />
         <Header
           onNavigateToEducation={() => setCurrentPage('education')}
           onNavigateToBapatla={() => setCurrentPage('bapatla')}

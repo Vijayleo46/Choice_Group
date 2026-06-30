@@ -66,7 +66,7 @@ body {
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
-button { cursor: none; border: none; background: none; font-family: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
 /* =============================================
    KEYFRAMES
@@ -118,43 +118,61 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
 }
 
 /* =============================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR — Premium Glassmorphic
    ============================================= */
 .cursor-outer {
   position: fixed;
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid var(--gold-primary);
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(184, 146, 42, 0.6);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
+  transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease,
+              backdrop-filter 0.3s ease;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   mix-blend-mode: normal;
+  box-shadow: 0 0 12px rgba(184, 146, 42, 0.08),
+              inset 0 0 8px rgba(184, 146, 42, 0.04);
 }
 
 .cursor-inner {
   position: fixed;
-  width: 6px;
-  height: 6px;
-  background: var(--gold-primary);
+  width: 5px;
+  height: 5px;
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-bright));
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: width 0.15s, height 0.15s;
+  box-shadow: 0 0 6px rgba(184, 146, 42, 0.5);
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 0.2s ease;
 }
 
+/* Hover state — expands with gold glow */
 .cursor-outer.hovering {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-color: var(--gold-bright);
-  background: rgba(201, 168, 76, 0.08);
+  background: rgba(184, 146, 42, 0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 0 24px rgba(184, 146, 42, 0.15),
+              0 0 48px rgba(184, 146, 42, 0.06),
+              inset 0 0 12px rgba(184, 146, 42, 0.05);
 }
 
 .cursor-inner.hovering {
-  width: 4px;
-  height: 4px;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
 }
 
 /* =============================================
@@ -3674,7 +3692,7 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.3);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-glass);
   padding: 0 5%;
@@ -5435,5 +5453,155 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
   .bp-hero-company-name::before,
   .bp-hero-company-name::after {
     width: 120px;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   GLOBAL PRESENCE MAP — White & Gold Premium
+════════════════════════════════════════════════ */
+
+.bp-global-map-section {
+  padding: 100px 5%;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f6f1 50%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bp-global-map-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center top, rgba(212,175,55,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.bp-global-map-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.bp-global-map-header {
+  text-align: center;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bp-global-map-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 20px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(184,146,42,0.3);
+  border-radius: 50px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b8922a;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.bp-global-map-dot {
+  width: 7px;
+  height: 7px;
+  background: #b8922a;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(184,146,42,0.8);
+  animation: bap-dot-pulse 2s ease-in-out infinite;
+}
+
+.bp-global-map-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, #b8922a 0%, #d4af37 40%, #f0d060 60%, #c9a84c 80%, #b8922a 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: bap-gold-shimmer 4s linear infinite;
+  line-height: 1.2;
+}
+
+.bp-global-map-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #5a5a7a;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.bp-global-map-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(184,146,42,0.2);
+  box-shadow: 
+    0 4px 0 rgba(255,255,255,0.8),
+    0 20px 60px rgba(0,0,0,0.1),
+    0 0 60px rgba(184,146,42,0.08);
+  padding: 40px;
+  transition: all 0.4s ease;
+}
+
+.bp-global-map-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, rgba(184,146,42,0.2), rgba(212,175,55,0.1), rgba(184,146,42,0.2));
+  background-size: 200% 200%;
+  animation: bap-gradient-shift 8s ease infinite;
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.bp-global-map-wrapper:hover::before {
+  opacity: 1;
+}
+
+.bp-global-map-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 0 0 2px rgba(184,146,42,0.3),
+    0 30px 80px rgba(0,0,0,0.15),
+    0 0 80px rgba(184,146,42,0.12);
+}
+
+.bp-global-map-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.05));
+  transition: filter 0.4s ease;
+}
+
+.bp-global-map-wrapper:hover .bp-global-map-img {
+  filter: drop-shadow(0 8px 30px rgba(184,146,42,0.15));
+}
+
+@media (max-width: 768px) {
+  .bp-global-map-section {
+    padding: 70px 5%;
+  }
+  
+  .bp-global-map-header {
+    margin-bottom: 40px;
+  }
+  
+  .bp-global-map-wrapper {
+    padding: 24px;
   }
 }

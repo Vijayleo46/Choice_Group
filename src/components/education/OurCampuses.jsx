@@ -41,10 +41,10 @@ const campuses = [
   {
     id: 3,
     number: '04',
-    name: 'Choice Kindergarten',
+    name: 'Choice Kindergarden',
     tagline: 'Where It All Begins',
-    description: 'Our premium International Baccalaureate program, preparing global leaders for tomorrow.',
-    fullDescription: 'Choice Kindergarten is where the journey of lifelong learning begins. With a play-based, child-centered approach rooted in the IB framework, our kindergartens across Kerala create a nurturing environment that sparks curiosity, builds confidence, and lays the foundation for academic excellence.',
+    description: 'Building strong foundations through joyful learning, meaningful play, and enriching experiences for every child.',
+    fullDescription: 'Kindergarten is where the journey of lifelong learning begins. With a play-based, child-centered approach rooted in the IB framework, our kindergartens across Kerala create a nurturing environment that sparks curiosity, builds confidence, and lays the foundation for academic excellence.',
     image: '/kindergarden.jpg',
     icon: '😊',
     highlights: ['IB Programme', '8 Campuses', 'Play-Based Learning', 'Bilingual Curriculum'],

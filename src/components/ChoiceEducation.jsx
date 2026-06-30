@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Cursor from './Cursor'
 import EducationHero from './education/EducationHero'
 import VisionMission from './education/VisionMission'
 import OurCampuses from './education/OurCampuses'
+import Admissions from './education/Admissions'
 import GuidingPrinciples from './education/GuidingPrinciples'
 import StudentExperience from './education/StudentExperience'
 import PresidentsDesk from './education/PresidentsDesk'
@@ -37,21 +37,10 @@ const ChoiceEducation = ({ onBackToHome }) => {
 
   return (
     <div className="choice-education">
-      <Cursor />
-      <header className="education-header" ref={headerRef}>
-        <div className="edu-header-container">
-          <button className="back-button" onClick={onBackToHome} aria-label="Back to home">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            Back to Home
-          </button>
-        </div>
-      </header>
-
-      <EducationHero />
+      <EducationHero onBackToHome={onBackToHome} />
       <VisionMission />
       <OurCampuses />
+      <Admissions />
       <GuidingPrinciples />
       <StudentExperience />
       <PresidentsDesk />

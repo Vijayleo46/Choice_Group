@@ -55,7 +55,7 @@ export default function Footer() {
           <div className="header-logo" style={{ marginBottom: '0.5rem' }}>
             <img src="/Choice-Group-Logo (1).png.png" alt="Choice Group" style={{ height: '90px' }} />
           </div>
-          <p>A legacy of trust, excellence, and innovation spanning over six decades. From marine exports to global conglomerates, we continue to push boundaries.</p>
+          <p>A legacy of trust, excellence, and innovation spanning over six decades. From Shrimp marine exports to global conglomerates, we continue to push boundaries.</p>
           <div className="footer-socials">
             <a href="#" className="social-btn" aria-label="LinkedIn">💼</a>
             <a href="#" className="social-btn" aria-label="Twitter">𝕏</a>
@@ -78,7 +78,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Divisions</h4>
           <div className="footer-links">
-            <a href="#expertise" className="footer-link">Marine Exports</a>
+            <a href="#expertise" className="footer-link">Shrimp Marine Exports</a>
             <a href="#expertise" className="footer-link">Food Production</a>
             <a href="#expertise" className="footer-link">Logistics</a>
             <a href="#expertise" className="footer-link">Construction</a>
