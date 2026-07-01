@@ -82,10 +82,8 @@ const CERTS = [
 ]
 
 const ECOSYSTEM_NODES = [
-  { label: 'Hatcheries', icon: '🥚', pos: 'top',    angle: -90 },
-  { label: 'Feed Mills',  icon: '🌾', pos: 'right',  angle: 0   },
-  { label: 'Farms',       icon: '🌊', pos: 'bottom', angle: 90  },
-  { label: 'Factories',   icon: '🏭', pos: 'left',   angle: 180 },
+  { label: 'Farms',     icon: '🌊', pos: 'bottom', angle: 90  },
+  { label: 'Factories', icon: '🏭', pos: 'left',   angle: 270 },
 ]
 
 export default function Certifications() {
@@ -326,7 +324,7 @@ export default function Certifications() {
 
             {/* Ecosystem caption */}
             <p className="cert-eco-caption">
-              BAP certification covers all four pillars of responsible aquaculture
+              BAP certification covers the core pillars of responsible aquaculture
             </p>
           </div>
 

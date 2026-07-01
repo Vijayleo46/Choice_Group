@@ -8,7 +8,7 @@ const Global = () => {
         <div className="section-header fade-up">
           <div className="section-label">International Footprint</div>
           <h2 className="section-title">Our <em>Global</em> Presence</h2>
-          <p className="section-desc">From the shores of Kerala to international capitals — The Choice Group's reach spans continents, cultures, and markets.</p>
+          <p className="section-desc">The Choice Group is one of the largest and highly diversified business conglomerate headquartered in Cochin with branches in all the major trading centers in South India, besides United States of America, Canada, South Korea &amp; Japan. The history of Choice Group spans half a century of entrepreneurial excellence dating back from modest beginnings in 1962 to its present day stature as a highly reputed business house in the South Indian state of Kerala.</p>
         </div>
         <div className="global-layout">
           <div className="world-map-container fade-up delay-1">
@@ -28,6 +28,8 @@ const Global = () => {
                 <line className="conn-line" id="cl-ca" x1="150" y1="120" x2="640" y2="175" strokeDasharray="6,4" />
                 <line className="conn-line" id="cl-kr" x1="808" y1="117" x2="648" y2="180" strokeDasharray="6,4" />
                 <line className="conn-line" id="cl-jp" x1="833" y1="110" x2="648" y2="175" strokeDasharray="6,4" />
+                <line className="conn-line" id="cl-uk" x1="470" y1="90" x2="640" y2="175" strokeDasharray="6,4" />
+                <line className="conn-line" id="cl-ke" x1="540" y1="220" x2="640" y2="175" strokeDasharray="6,4" />
 
                 <g className="map-marker hq-marker" transform="translate(645,172)">
                   <circle className="marker-pulse" r="18" />
@@ -53,6 +55,16 @@ const Global = () => {
                   <circle className="marker-pulse" r="14" />
                   <circle className="marker-core" r="6" />
                   <text className="marker-label" x="0" y="-18">Japan</text>
+                </g>
+                <g className="map-marker" transform="translate(470,90)">
+                  <circle className="marker-pulse" r="14" />
+                  <circle className="marker-core" r="6" />
+                  <text className="marker-label" x="0" y="-18">United Kingdom</text>
+                </g>
+                <g className="map-marker" transform="translate(540,220)">
+                  <circle className="marker-pulse" r="14" />
+                  <circle className="marker-core" r="6" />
+                  <text className="marker-label" x="0" y="-18">Kenya</text>
                 </g>
               </svg>
             </div>
@@ -81,10 +93,24 @@ const Global = () => {
               </div>
             </div>
             <div className="global-card">
+              <div className="gc-flag">🇬🇧</div>
+              <div className="gc-info">
+                <strong>United Kingdom</strong>
+                <span>European Sales &amp; Logistics Office</span>
+              </div>
+            </div>
+            <div className="global-card">
               <div className="gc-flag">🇸🇬</div>
               <div className="gc-info">
                 <strong>Singapore</strong>
                 <span>Choice Group Holdings Pte Ltd</span>
+              </div>
+            </div>
+            <div className="global-card">
+              <div className="gc-flag">🇰🇪</div>
+              <div className="gc-info">
+                <strong>Kenya</strong>
+                <span>East Africa Marine &amp; Logistics Network</span>
               </div>
             </div>
             <div className="global-card">

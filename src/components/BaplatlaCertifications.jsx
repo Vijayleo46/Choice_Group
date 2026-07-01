@@ -6,10 +6,8 @@ import '../styles/bap-certifications.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const ECOSYSTEM_NODES = [
-  { label: 'Hatcheries', icon: '🥚', angle: -90 },
-  { label: 'Feed Mills',  icon: '🌾', angle: 0   },
-  { label: 'Farms',       icon: '🌊', angle: 90  },
-  { label: 'Factories',   icon: '🏭', angle: 180 },
+  { label: 'Farms',     icon: '🌊', angle: 90  },
+  { label: 'Factories', icon: '🏭', angle: 270 },
 ]
 
 export default function BaplatlaCertifications() {
@@ -239,7 +237,7 @@ export default function BaplatlaCertifications() {
             </div>
 
             <p className="bap-eco-caption">
-              BAP certification covers all four pillars of responsible aquaculture
+              BAP certification covers the core pillars of responsible aquaculture
             </p>
           </div>
 
@@ -258,7 +256,7 @@ export default function BaplatlaCertifications() {
             <div className="bap-cert-img-wrapper">
               <div className="bap-cert-img-glow" />
               <img
-                src="/bf6f579e-a5c8-450d-a495-2a2689a2a959.png"
+                src="/ChatGPT%20Image%20Jul%201,%202026,%2010_09_43%20AM.png"
                 alt="Choice Group Certifications — BRC, HACCP, SGS, Global Seafood Alliance, BAP, MSC, UKAS, ASC, amfori BSCI"
                 className="bap-cert-img"
               />
