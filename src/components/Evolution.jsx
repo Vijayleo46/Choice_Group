@@ -5,14 +5,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const timeline = [
-  { year: '1950', event: 'Choice Canning Established', desc: 'Founded by OC Thomas with 25 employees, focusing on canned shrimp exports to Canada.' },
-  { year: '1969', event: 'Technological Leap', desc: 'Introduced modern block frozen shrimp technology, revolutionizing the processing method.' },
-  { year: '1978', event: 'Diversification into Shipping', desc: 'Choice Intermodal Services established, marking our entry into the shipping and logistics sector.' },
-  { year: '1987', event: 'First Overseas Office', desc: 'Established our first international presence in New York, USA.' },
-  { year: '1991', event: 'Education & Real Estate', desc: 'Launched Choice School with a vision of value education, and began our real estate division.' },
-  { year: '1999', event: 'Tastee Choice Brand Born', desc: 'Established our own brand "Tastee Choice" for direct supply to US supermarkets.' },
-  { year: '2008', event: 'USA Leadership & JTPac', desc: 'Achieved #1 ranking in USA unbreaded shrimp category and established JTPac performing arts theatre.' },
-  { year: '2026', event: 'Global Legacy Continues', desc: 'Over 60 years of excellence spanning Marine Exports, Foods, Logistics, Shipping, Construction, Education & Technology.' }
+  { year: '1962', event: 'The Genesis of Choice', desc: 'Choice Canning is founded by visionary entrepreneur O.C. Thomas, laying the cornerstone of a global conglomerate.' },
+  { year: '1969', event: 'Pioneering Block Frozen Technology', desc: 'A bold technological pivot marks the end of canning as Choice introduces block freezing, setting a new industry benchmark.' },
+  { year: '1978', event: 'Charting New Waters', desc: 'Stepping beyond marine exports, the group establishes Choice Intermodal Services, entering shipping, logistics, and trading.' },
+  { year: '1987', event: 'Planting Global Roots', desc: 'Choice establishes its first international corporate outpost on Rector Street in New York, securing direct access to the US.' },
+  { year: '1990', event: 'Peak Honors & Tech Supremacy', desc: 'Opening the flagship Cochin IQF facility, the group receives the prestigious President’s Export Award for seafood leadership.' },
+  { year: '1991', event: 'Fostering Future Minds', desc: 'Believing in community empowerment, the group launches The Choice School, introducing premium, value-based education.' },
+  { year: '1995', event: 'Global Alliances & Shipping Supremacy', desc: 'Choice is appointed South India\'s representative for HMM South Korea, scaling international cargo operations.' },
+  { year: '1999', event: 'The Birth of ‘Tastee Choice’', desc: 'Breaking retail boundaries, Choice launches its own brand, Tastee Choice, supplying premium seafood directly to US supermarkets.' },
+  { year: '2005', event: 'Conquering the US Retail Market', desc: 'Secures a massive retail breakthrough, placing premium meal kits in 46 Shop Rite supermarket chains across the US.' },
+  { year: '2008', event: 'Cultural Patronage & Market Leadership', desc: 'Establishing JTPac performing arts center, while Tastee Choice captures the #1 spot in the US unbreaded shrimp market.' },
+  { year: '2010-12', event: 'Vertical Luxury & Ecological Wonders', desc: 'Inaugurating Choice Paradise, South India’s tallest green tower built on an 80% ecological concept, as student strength crosses 2,000.' },
+  { year: '2015-16', event: 'Expanding the Educational Legacy', desc: 'Choice School expands with state-of-the-art campuses in Thiruvalla and Kozhikode, alongside a modern Kinderland pre-school network.' }
 ]
 
 export default function Evolution() {

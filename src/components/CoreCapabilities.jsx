@@ -18,7 +18,7 @@ const CARDS = [
     num: '02',
     icon: '🔗',
     title: 'Integrated Supply Chain',
-    desc: 'A seamless ecosystem encompassing hatcheries, farms, feed mills, processing facilities and cold chain logistics.',
+    desc: 'A seamless ecosystem encompassing farms, processing facilities and cold chain logistics.',
     color: '#3b82f6',
     tag: 'End-to-End',
   },
@@ -57,10 +57,10 @@ const CARDS = [
 ]
 
 const STATS = [
-  { value: 70,      suffix: '+',    label: 'Years of Experience',          icon: '🏆' },
-  { value: 140000,  suffix: '+',    label: 'Sq.ft Processing Infrastructure', icon: '🏗️' },
-  { value: 70,      suffix: ' MT',  label: 'Daily Production Capacity',    icon: '⚙️' },
-  { value: 100,     suffix: '%',    label: 'Traceability Commitment',       icon: '📡' },
+  { value: 70, suffix: '+', label: 'Years of Experience', icon: '🏆' },
+  { value: 140000, suffix: '+', label: 'Sq.ft Processing Infrastructure', icon: '🏗️' },
+  { value: 70, suffix: ' MT', label: 'Daily Production Capacity', icon: '⚙️' },
+  { value: 100, suffix: '%', label: 'Traceability Commitment', icon: '📡' },
 ]
 
 /* ── Count-up hook ── */
@@ -118,8 +118,8 @@ export default function CoreCapabilities() {
       if (!sectionRef.current) return
       const r = sectionRef.current.getBoundingClientRect()
       setMouse({
-        x: ((e.clientX - r.left) / r.width  - 0.5) * 22,
-        y: ((e.clientY - r.top)  / r.height - 0.5) * 14,
+        x: ((e.clientX - r.left) / r.width - 0.5) * 22,
+        y: ((e.clientY - r.top) / r.height - 0.5) * 14,
       })
     }
     window.addEventListener('mousemove', onMove)
@@ -172,15 +172,15 @@ export default function CoreCapabilities() {
       })
 
       /* Orbs float */
-      gsap.to('.cc-orb-1', { y: -30, x: 16,  duration: 8,  repeat: -1, yoyo: true, ease: 'sine.inOut' })
-      gsap.to('.cc-orb-2', { y:  22, x: -18, duration: 10, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 2.5 })
-      gsap.to('.cc-orb-3', { y: -16, x: 10,  duration: 7,  repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 5 })
+      gsap.to('.cc-orb-1', { y: -30, x: 16, duration: 8, repeat: -1, yoyo: true, ease: 'sine.inOut' })
+      gsap.to('.cc-orb-2', { y: 22, x: -18, duration: 10, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 2.5 })
+      gsap.to('.cc-orb-3', { y: -16, x: 10, duration: 7, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 5 })
 
       /* Particles */
       gsap.utils.toArray('.cc-particle').forEach((p, i) => {
         gsap.to(p, {
           opacity: gsap.utils.random(0.5, 1),
-          scale:   gsap.utils.random(1.3, 2.2),
+          scale: gsap.utils.random(1.3, 2.2),
           duration: gsap.utils.random(1.5, 3.5),
           repeat: -1, yoyo: true, ease: 'sine.inOut',
           delay: i * 0.22,
@@ -204,17 +204,17 @@ export default function CoreCapabilities() {
         <div className="cc-vignette" />
         {/* Shrimp silhouette */}
         <svg className="cc-shrimp-deco" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 58 Q45 8 85 22 Q118 36 148 12" stroke="#00C6A7" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M22 65 Q55 18 90 30 Q122 42 150 20" stroke="#00C6A7" strokeWidth="1.5" strokeLinecap="round"/>
-          <circle cx="148" cy="12" r="5" fill="#00C6A7"/>
-          <path d="M148 12 L155 6 M148 12 L156 14" stroke="#00C6A7" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M12 58 Q45 8 85 22 Q118 36 148 12" stroke="#00C6A7" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M22 65 Q55 18 90 30 Q122 42 150 20" stroke="#00C6A7" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="148" cy="12" r="5" fill="#00C6A7" />
+          <path d="M148 12 L155 6 M148 12 L156 14" stroke="#00C6A7" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
         {/* Particles */}
         {Array.from({ length: 22 }).map((_, i) => (
           <div key={i} className="cc-particle" style={{
-            left:   `${(i * 43 + 7) % 100}%`,
-            top:    `${(i * 59 + 11) % 100}%`,
-            width:  `${2 + (i % 3)}px`,
+            left: `${(i * 43 + 7) % 100}%`,
+            top: `${(i * 59 + 11) % 100}%`,
+            width: `${2 + (i % 3)}px`,
             height: `${2 + (i % 3)}px`,
             opacity: 0.1,
           }} />
@@ -254,7 +254,7 @@ export default function CoreCapabilities() {
               <span className="cc-cta-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2"
-                    strokeLinecap="round" strokeLinejoin="round"/>
+                    strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
               <div className="cc-cta-glow" />
