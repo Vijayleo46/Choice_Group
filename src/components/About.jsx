@@ -32,13 +32,20 @@ export default function About() {
     <section ref={sectionRef} id="about" className="about">
       <div className="about-inner">
         <div className="about-visual">
-          <div ref={imgRef} className="about-img-frame" style={{ 
-            backgroundImage: 'url("/warehouse.jpg.png")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,17,40,0.95) 0%, rgba(10,17,40,0.3) 50%, transparent 100%)' }} />
-            <div style={{ position: 'absolute', bottom: '24px', left: '24px', right: '24px', zIndex: 2 }}>
+          <div ref={imgRef} className="about-img-frame" style={{ position: 'relative', overflow: 'hidden' }}>
+            <video
+              className="about-bg-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            >
+              <source src="/Drone_video_industrial_facility_…_202606251807.mp4" type="video/mp4" />
+              <source src="/Drone_video_industrial_facility_…_202606251808.mp4" type="video/mp4" />
+            </video>
+            <div className="about-img-overlay" aria-hidden />
+            <div style={{ position: 'absolute', bottom: '24px', left: '24px', right: '24px', zIndex: 4 }}>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--gold-primary)', marginBottom: '6px' }}>Choice Group Global Operations</h3>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>State-of-the-art logistics and distribution center</p>
             </div>
@@ -66,11 +73,11 @@ export default function About() {
           </p>
           
           <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1rem' }}>
-            What started as a pioneering venture in the marine export industry has evolved into a multi-sector enterprise with business interests spanning <strong style={{ color: 'var(--text-primary)' }}>Marine Exports, Food Production, Logistics, Shipping, Construction, Education, Technology, and Financial Services</strong>.
+            What started as a pioneering venture in the marine export industry has evolved into a multi-sector enterprise with business interests spanning <strong style={{ color: 'var(--text-primary)' }}>Shrimp Marine Exports, Food Production, Logistics, Shipping, Construction, Education, Technology, and Financial Services</strong>.
           </p>
 
           <p className="section-desc" style={{ maxWidth: '100%', marginBottom: '1.5rem' }}>
-            With an annual turnover exceeding <strong style={{ color: 'var(--gold-primary)' }}>₹600 crores</strong>, a workforce of over <strong style={{ color: 'var(--gold-primary)' }}>1,000 professionals</strong>, and operations in <strong style={{ color: 'var(--gold-primary)' }}>India, USA, Canada, Japan, and South Korea</strong>, the Choice Group continues to set benchmarks in every industry it enters.
+            With an annual turnover exceeding <strong style={{ color: 'var(--gold-primary)' }}>₹600 crores</strong>, a workforce of over <strong style={{ color: 'var(--gold-primary)' }}>1,000 professionals</strong>, and operations in <strong style={{ color: 'var(--gold-primary)' }}>India, USA, UK, Kenya, Canada, Japan, and South Korea</strong>, the Choice Group continues to set benchmarks in every industry it enters.
           </p>
 
           <div ref={statsRef} className="about-values">
@@ -85,7 +92,7 @@ export default function About() {
               <div className="value-icon">🌍</div>
               <div>
                 <span className="value-name">Global Operations</span>
-                <span className="value-desc">Offices in 5 countries across 3 continents</span>
+                <span className="value-desc">Offices in  countries across 3 continents</span>
               </div>
             </div>
             <div className="value-item">

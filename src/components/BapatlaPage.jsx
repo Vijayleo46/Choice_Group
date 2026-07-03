@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import BaplatlaCertifications from './BaplatlaCertifications'
+import BaplatlaDigitalFactory from './BaplatlaDigitalFactory'
 import CoreCapabilities from './CoreCapabilities'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -146,6 +147,9 @@ export default function BapatlaPage({ onBackToHome }) {
 
       {/* ── Certifications ── */}
       <BaplatlaCertifications />
+
+      {/* ── Digital Factory Platform ── */}
+      <BaplatlaDigitalFactory />
 
       {/* ── CTA ── */}
       <section className="bp-cta">

@@ -145,8 +145,9 @@ export default function Hero() {
           <div className="hero-floating-badge top-right">
             <div className="badge-icon">🌍</div>
             <div>
-              <span className="badge-value">5 Countries</span>
-              <span className="badge-label">India · USA · Canada · Japan · Korea</span>
+              <span className="badge-value">Countries</span>
+              
+                  <span className="badge-label">India · USA · UK · Kenya · Canada · Japan · South Korea</span>
             </div>
           </div>
 

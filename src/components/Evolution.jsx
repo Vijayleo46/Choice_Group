@@ -39,18 +39,40 @@ export default function Evolution() {
         ease: 'none'
       })
 
-      // Timeline items staggered fade
+      // Timeline items and nodes
       if (itemsRef.current.length > 0) {
         itemsRef.current.forEach((item, i) => {
-          gsap.from(item, {
+          if (!item) return
+          const card = item.querySelector('.timeline-card')
+          const node = item.querySelector('.timeline-node')
+
+          // Animate card entrance
+          gsap.from(card, {
             scrollTrigger: {
               trigger: item,
               start: 'top 85%',
             },
-            opacity: 1,
+            opacity: 0,
             x: i % 2 === 0 ? -40 : 40,
             duration: 0.8,
             ease: 'power3.out'
+          })
+
+          // Activate node as it crosses center screen
+          gsap.to(node, {
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 50%',
+              end: 'bottom 50%',
+              toggleActions: 'play reverse play reverse',
+            },
+            borderColor: 'var(--gold-primary)',
+            background: 'linear-gradient(135deg, var(--gold-primary), var(--gold-bright))',
+            color: '#ffffff',
+            scale: 1.15,
+            boxShadow: '0 0 15px rgba(196,158,63,0.8), 0 0 0 6px #ffffff',
+            duration: 0.3,
+            ease: 'power2.out'
           })
         })
       }
@@ -72,7 +94,9 @@ export default function Evolution() {
         </div>
 
         <div className="timeline">
-          <div ref={lineRef} className="timeline-line" />
+          {/* Dual-line progress bar */}
+          <div className="timeline-line-bg" />
+          <div ref={lineRef} className="timeline-line-progress" />
 
           <div className="timeline-items">
             {timeline.map((item, i) => (

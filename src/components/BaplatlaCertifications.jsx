@@ -69,11 +69,35 @@ export default function BaplatlaCertifications() {
         })
       }
 
-      gsap.from('.bap-cert-image-panel', {
-        scrollTrigger: { trigger: '.bap-body', start: 'top 78%', once: true },
-        opacity: 0, x: 60,
-        duration: 1.1, ease: 'power3.out', delay: 0.4,
-      })
+      gsap.fromTo('.bap-cert-img-wrapper',
+        { opacity: 0, scale: 0.84, y: 90 },
+        {
+          scrollTrigger: {
+            trigger: '.bap-body',
+            start: 'top 90%',
+            end: 'top 50%',
+            scrub: 0.9,
+          },
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          ease: 'power3.out',
+        }
+      )
+
+      gsap.fromTo('.bap-video',
+        { scale: 1.08 },
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 90%',
+            end: 'bottom top',
+            scrub: 0.8,
+          },
+          scale: 1,
+          ease: 'power1.out',
+        }
+      )
 
       gsap.from('.bap-bottom-left, .bap-bottom-right', {
         scrollTrigger: { trigger: '.bap-bottom', start: 'top 82%', once: true },

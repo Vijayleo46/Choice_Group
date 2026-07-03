@@ -7,6 +7,8 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Why from './components/Why'
 import Expertise from './components/Expertise'
+import DigitalFactory from './components/DigitalFactory'
+import ColdStoreManagement from './components/ColdStoreManagement'
 import GlobalPresence from './components/GlobalPresence'
 import Evolution from './components/Evolution'
 import Leadership from './components/Leadership'
@@ -72,6 +74,15 @@ function App() {
     )
   }
 
+  if (currentPage === 'coldstore') {
+    return (
+      <>
+        <Cursor />
+        <ColdStoreManagement onBack={() => setCurrentPage('home')} />
+      </>
+    )
+  }
+
   return (
     <>
       <IntroScreen onComplete={() => setIntroComplete(true)} />
@@ -86,6 +97,7 @@ function App() {
           <About />
           <Why />
           <Expertise />
+          <DigitalFactory onOpenColdStore={() => setCurrentPage('coldstore')} />
           <GlobalPresence />
           <Evolution />
           <Leadership />
