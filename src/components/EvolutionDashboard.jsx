@@ -42,7 +42,7 @@ const EvolutionDashboard = () => {
     }
   };
 
-  const decades = ['1950s', '1970s', '1980s', '1990s', '2000s', '2010s'];
+  const decades = ['1950s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
 
   return (
     <section id="history" className="section history-section">
@@ -265,6 +265,52 @@ const EvolutionDashboard = () => {
                 <div className="mc-content">
                   <h4 className="mc-title">Thiruvalla Operations & Tripunithura Block</h4>
                   <p className="mc-desc">Choice School Thiruvalla commenced operations, and a state-of-the-art senior school block opened in Tripunithura.</p>
+                </div>
+              </div>
+
+              <div className="milestone-card fade-up" data-decade="2010s" data-focus="Diversified Growth" data-ms="Business Strengthening" id="year-2017-2019">
+                <div className="mc-year">2017–2019</div>
+                <div className="mc-content">
+                  <h4 className="mc-title">Education & Business Expansion</h4>
+                  <p className="mc-desc">Education vertical expansion continued while shrimp marine exports, shipping, frozen foods, real estate, and entertainment businesses strengthened. The group maintained operations in India and overseas, including the US, Canada, Japan, South Korea, and Singapore.</p>
+                </div>
+              </div>
+
+              <div className="milestone-card fade-up" data-decade="2020s" data-focus="Digital Transformation" data-ms="COVID Digital Initiatives" id="year-2020-2021">
+                <div className="mc-year">2020–2021</div>
+                <div className="mc-content">
+                  <h4 className="mc-title">COVID Digital Adoption</h4>
+                  <p className="mc-desc">During the COVID period, Choice Group adopted digital initiatives for education and business operations. The Choice School supported online learning models to continue teaching and campus engagement.</p>
+                </div>
+              </div>
+
+              <div className="milestone-card fade-up" data-decade="2020s" data-focus="Diversified Portfolio" data-ms="Business Continuity" id="year-2022-2024">
+                <div className="mc-year">2022–2024</div>
+                <div className="mc-content">
+                  <h4 className="mc-title">Diversified Business Continuity</h4>
+                  <p className="mc-desc">The group continued its diversified business model across Shrimp Marine Products, Shipping & Logistics, Frozen Meals, Real Estate, IT, Education, and Performing Arts through Jose Thomas Performing Arts Centre (JTPac).</p>
+                </div>
+              </div>
+
+              <div className="milestone-card fade-up" data-decade="2020s" data-focus="Education Leadership" data-ms="School Expansion" id="year-2025">
+                <div className="mc-year">2025</div>
+                <div className="mc-content">
+                  <h4 className="mc-title">The Choice School Leadership</h4>
+                  <p className="mc-desc">The Choice School continued positioning itself among Kerala's leading schools with expansion in educational offerings and admissions for AY 2026–27.</p>
+                </div>
+              </div>
+
+              <div className="milestone-card fade-up" data-decade="2020s" data-focus="Global Leadership" data-ms="Kochi Headquarters" id="year-2026">
+                <div className="mc-year">2026</div>
+                <div className="mc-content">
+                  <h4 className="mc-title">Diversified Global Conglomerate</h4>
+                  <p className="mc-desc">Choice Group remains a diversified conglomerate headquartered in Kochi with businesses spanning Shrimp Marine Exports, Shipping & Logistics, Education, Real Estate, Entertainment, IT Services, and International Operations. The group employs over a thousand people under the leadership of Jose Thomas.</p>
+                  <div className="mc-image">
+                    <video width="100%" controls>
+                      <source src="/Founder_walks_through_lobby_202607061041.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
                 </div>
               </div>
 

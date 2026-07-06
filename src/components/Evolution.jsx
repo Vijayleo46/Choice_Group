@@ -16,7 +16,12 @@ const timeline = [
   { year: '2005', event: 'Conquering the US Retail Market', desc: 'Secures a massive retail breakthrough, placing premium meal kits in 46 Shop Rite supermarket chains across the US.' },
   { year: '2008', event: 'Cultural Patronage & Market Leadership', desc: 'Establishing JTPac performing arts center, while Tastee Choice captures the #1 spot in the US unbreaded shrimp market.' },
   { year: '2010-12', event: 'Vertical Luxury & Ecological Wonders', desc: 'Inaugurating Choice Paradise, South India’s tallest green tower built on an 80% ecological concept, as student strength crosses 2,000.' },
-  { year: '2015-16', event: 'Expanding the Educational Legacy', desc: 'Choice School expands with state-of-the-art campuses in Thiruvalla and Kozhikode, alongside a modern Kinderland pre-school network.' }
+  { year: '2015-16', event: 'Expanding the Educational Legacy', desc: 'Choice School expands with state-of-the-art campuses in Thiruvalla and Kozhikode, alongside a modern Kinderland pre-school network.' },
+  { year: '2017-19', event: 'Education & Business Expansion', desc: 'The group continued education expansion while strengthening marine exports, shipping, frozen foods, real estate, and entertainment. Operations were maintained across India and overseas including the US, Canada, Japan, South Korea, and Singapore.' },
+  { year: '2020-21', event: 'COVID Digital Transformation', desc: 'Choice Group adopted digital initiatives across education and business during the COVID period. The Choice School supported online learning models to keep teaching and campus engagement active.' },
+  { year: '2022-24', event: 'Diversified Business Continuity', desc: 'The group continued its diversified portfolio through Marine Products, Shipping & Logistics, Frozen Meals, Real Estate, IT, Education, and Performing Arts via Jose Thomas Performing Arts Centre (JTPac).' },
+  { year: '2025', event: 'Educational Leadership', desc: 'The Choice School strengthened its position among Kerala’s leading schools with expanded offerings and admissions planning for AY 2026–27.' },
+  { year: '2026', event: 'Diversified Conglomerate Leadership', desc: 'Choice Group remains headquartered in Kochi with businesses in Marine Exports, Shipping & Logistics, Education, Real Estate, Entertainment, IT Services, and international operations under the leadership of Jose Thomas.' }
 ]
 
 export default function Evolution() {

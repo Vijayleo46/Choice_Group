@@ -112,14 +112,23 @@ export default function Why() {
             cursor: 'zoom-in'
           }}
         >
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'url("/ceo.jpg.png")',
-            backgroundSize: '100% 100%',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }} />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/ceo.jpg.png"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          >
+            <source src="/Founder_walks_through_lobby_202607061041.mp4" type="video/mp4" />
+          </video>
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,23,42,0.95), transparent)' }} />
           <div style={{ position: 'absolute', bottom: '30px', left: '30px', right: '30px' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: 'var(--gold-primary)', marginBottom: '10px' }}>Excellence in Infrastructure</h3>
@@ -160,7 +169,17 @@ export default function Why() {
       {isZoomed && (
         <div className={`zoom-overlay${isClosing ? ' closing' : ''}`} onClick={closeModal}>
           <div className={`zoom-container${isClosing ? ' closing' : ''}`} onClick={(e) => e.stopPropagation()}>
-            <img src="/ceo.jpg.png" alt="JT Sir" className="zoom-img" />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="zoom-img"
+              style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }}
+            >
+              <source src="/Founder_walks_through_lobby_202607061041.mp4" type="video/mp4" />
+            </video>
             <button className="zoom-close" onClick={closeModal}>✕</button>
           </div>
         </div>

@@ -98,8 +98,13 @@ export default function BaplatlaDigitalFactory() {
     >
       <div className="bap-digital-inner">
         <div className="bap-digital-copy">
-          <span className="bap-digital-label">Our Digital Factory Platform</span>
+          <span className="bap-digital-label">DIGITAL ECOSYSTEM</span>
           <h2>Digital Factory Platform</h2>
+          <div className="bap-digital-divider" aria-hidden>
+            <span />
+            <span />
+            <span />
+          </div>
           <p>
             A complete suite of intelligent dashboards powering every stage of production—from receiving to dispatch,
             inventory, quality control, and executive analytics.
