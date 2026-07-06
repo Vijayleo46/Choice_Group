@@ -162,11 +162,24 @@
 
 .bap-digital-screenshot {
   position: relative;
-  height: 230px;
+  min-height: 230px;
   border-radius: 26px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(18, 24, 63, 0.95), rgba(34, 57, 108, 0.88));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  background: #fcfcf9;
+  border: 1px solid rgba(201, 164, 91, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+.bap-digital-screenshot-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 10s ease;
+}
+
+.bap-digital-card:hover .bap-digital-screenshot-image {
+  transform: scale(1.03);
 }
 
 .bap-digital-screenshot::before {
@@ -218,26 +231,26 @@
   align-self: flex-start;
   padding: 9px 16px;
   border-radius: 999px;
-  background: rgba(76, 183, 127, 0.14);
-  color: #186a3f;
-  font-size: 0.8rem;
+  background: rgba(201, 164, 91, 0.16);
+  color: #7b5a2e;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .bap-digital-card h3 {
-  font-size: 1.25rem;
-  line-height: 1.2;
-  color: #111a34;
+  font-size: 1.35rem;
+  line-height: 1.18;
+  color: #0f172a;
   margin: 0;
 }
 
 .bap-digital-card p {
   margin: 0;
-  color: #525f7f;
+  color: #5e6679;
   line-height: 1.75;
-  font-size: 0.97rem;
+  font-size: 0.98rem;
 }
 
 .bap-digital-card-footer {
@@ -246,7 +259,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  color: #2c3e70;
+  color: #4b5563;
   font-size: 0.95rem;
   font-weight: 700;
 }
@@ -255,21 +268,140 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #2c3e70;
-  transition: transform 0.3s ease;
+  color: #926e2e;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .bap-digital-card:hover .bap-digital-action {
   transform: translateX(6px);
+  color: #c9a45b;
 }
 
 .bap-digital-card svg {
-  color: #2c3e70;
-  transition: transform 0.3s ease;
+  color: #926e2e;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .bap-digital-card:hover svg {
   transform: translateX(4px);
+  color: #c9a45b;
+}
+
+.bap-digital-screenshot {
+  cursor: zoom-in;
+}
+
+.bap-digital-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.bap-digital-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.bap-digital-overlay-inner {
+  position: relative;
+  width: min(90vw, 1200px);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.bap-digital-overlay-pane {
+  position: relative;
+  width: 100%;
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.bap-digital-overlay-pane img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.35);
+  filter: brightness(1.05);
+  transform-origin: center center;
+  will-change: transform, filter, box-shadow;
+}
+
+.bap-digital-overlay-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+  z-index: 1;
+}
+
+.bap-digital-overlay-close:hover {
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.bap-digital-overlay-close span {
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+}
+
+.bap-digital-overlay-close span:first-child {
+  transform: rotate(45deg);
+}
+
+.bap-digital-overlay-close span:last-child {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 720px) {
+  .bap-digital-overlay {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .bap-digital-overlay-inner {
+    max-width: 100vw;
+    max-height: 100vh;
+    padding: 16px;
+  }
+
+  .bap-digital-overlay-pane {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  .bap-digital-overlay-pane img {
+    border-radius: 12px;
+    max-height: 88vh;
+  }
 }
 
 @media (max-width: 1100px) {

@@ -1,61 +1,84 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Flip } from 'gsap/Flip'
 import '../styles/bap-digital-factory.css'
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, Flip)
 
 const DASHBOARDS = [
   {
     title: 'Executive Dashboard',
     desc: 'Real-time KPIs, production analytics, shift monitoring and executive business intelligence.',
+    img: '/IC-executive-portfolio-dashboard-example.png',
     accent: 'linear-gradient(135deg, #2c3e8a, #6b5bde)',
   },
   {
     title: 'Cold Store Management',
     desc: 'Inventory tracking, pallet locations, stock movement, shipment control and cold storage monitoring.',
+    img: '/guide-to-cold-storage.webp',
     accent: 'linear-gradient(135deg, #1f4769, #1fbfa8)',
   },
   {
     title: 'Process Overview',
-    desc: 'Interactive visualization of the complete shrimp processing workflow from Receiving to Dispatch.',
+    desc: 'Shrimp processing workflow from receiving through dispatch.',
+    img: '/f09f4253-0f52-4877-98fd-ae31fdb4688f.jpg',
     accent: 'linear-gradient(135deg, #7e4bb8, #ff8f49)',
   },
   {
     title: 'Production Dashboard',
     desc: 'Monitor contractor productivity, batches, machine performance and daily production metrics.',
+    img: '/001824955-1.jpeg',
     accent: 'linear-gradient(135deg, #19345e, #2dc78f)',
   },
   {
     title: 'PlantOS Integration',
     desc: 'Machine monitoring, conveyors, PLC connectivity, alarms and production tracking.',
+    img: '/fresh-shrimp-lying-black-net-which-water-farm-370270568.webp',
     accent: 'linear-gradient(135deg, #2c3e8a, #ff8f49)',
   },
   {
     title: 'PPC Dashboard',
     desc: 'Division-wise contractor dashboards with Romeo, Bravo, Golf and Papa production statistics.',
+    img: '/ChatGPT Image Jul 6, 2026, 04_10_20 PM.png',
     accent: 'linear-gradient(135deg, #321a73, #6b5bde)',
   },
   {
     title: 'Inventory Dashboard',
     desc: 'Stock management, shipments, weight tracking, pallet management and export tools.',
+    img: '/ChatGPT Image Jul 6, 2026, 04_24_58 PM.png',
     accent: 'linear-gradient(135deg, #0d4f6c, #1fbfa8)',
   },
   {
     title: 'Operations Dashboard',
     desc: 'Cold store operations, approvals, throughput, excess returns and processing statistics.',
+    img: '/ChatGPT Image Jul 6, 2026, 04_44_32 PM.png',
     accent: 'linear-gradient(135deg, #3b2f75, #ff8f49)',
   },
   {
     title: 'Analytics Dashboard',
     desc: 'Interactive charts, shift comparison, production trends, product breakdown and business insights.',
+    img: '/ChatGPT Image Jul 6, 2026, 04_54_23 PM.png',
     accent: 'linear-gradient(135deg, #1f4769, #7e4bb8)',
   },
 ]
 
+const dashboardImage = (title) => {
+  const slug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+  return `/${slug}.png`
+}
+
 export default function BaplatlaDigitalFactory() {
   const sectionRef = useRef(null)
+  const overlayRef = useRef(null)
+  const overlayImageRef = useRef(null)
+  const activeCardRef = useRef(null)
+  const bodyOverflowRef = useRef('')
   const [pointer, setPointer] = useState({ x: 0, y: 0 })
+  const [selectedIndex, setSelectedIndex] = useState(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -67,7 +90,7 @@ export default function BaplatlaDigitalFactory() {
         ease: 'power3.out',
       })
 
-      gsap.from('.bap-digital-card', {
+      gsap.from('.bap-digital-card', { 
         scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
         opacity: 0,
         y: 38,
@@ -88,6 +111,128 @@ export default function BaplatlaDigitalFactory() {
     const y = ((event.clientY - rect.top) / rect.height - 0.5) * 10
     setPointer({ x, y })
   }
+
+  const resetOverlay = () => {
+    const overlay = overlayRef.current
+    const card = activeCardRef.current
+
+    if (overlay) {
+      gsap.to(overlay, { autoAlpha: 0, duration: 0.3, ease: 'power2.out' })
+      overlay.classList.remove('is-open')
+    }
+
+    if (card) {
+      gsap.to(card.querySelectorAll('.bap-digital-card-label, .bap-digital-card h3, .bap-digital-card p, .bap-digital-card-footer'), {
+        opacity: 1,
+        duration: 0.25,
+        ease: 'power3.out',
+      })
+    }
+
+    document.body.style.overflow = bodyOverflowRef.current || ''
+    setSelectedIndex(null)
+    activeCardRef.current = null
+  }
+
+  const closeOverlay = () => {
+    const overlay = overlayRef.current
+    const overlayImage = overlayImageRef.current
+    const card = activeCardRef.current
+    const sourceImage = card?.querySelector('.bap-digital-screenshot-image')
+
+    if (!overlay || !overlayImage || !sourceImage) {
+      resetOverlay()
+      return
+    }
+
+    const state = Flip.getState(overlayImage)
+    overlay.classList.remove('is-open')
+
+    Flip.from(state, {
+      targets: sourceImage,
+      absolute: true,
+      duration: 0.8,
+      ease: 'power4.inOut',
+      scale: true,
+      onStart: () => {
+        gsap.set(sourceImage, { autoAlpha: 1 })
+      },
+      onComplete: resetOverlay,
+    })
+  }
+
+  const openOverlay = (index, event) => {
+    const card = event.currentTarget.closest('.bap-digital-card')
+    const sourceImage = card?.querySelector('.bap-digital-screenshot-image')
+    const overlay = overlayRef.current
+    const overlayImage = overlayImageRef.current
+
+    if (!card || !sourceImage || !overlay || !overlayImage) return
+
+    activeCardRef.current = card
+    bodyOverflowRef.current = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const sourceSrc = DASHBOARDS[index].img
+    if (!sourceSrc) return
+
+    setSelectedIndex(index)
+    gsap.to(card.querySelectorAll('.bap-digital-card-label, .bap-digital-card h3, .bap-digital-card p, .bap-digital-card-footer'), {
+      opacity: 0,
+      duration: 0.22,
+      ease: 'power3.out',
+    })
+
+    const state = Flip.getState(sourceImage)
+    overlayImage.src = sourceSrc
+    gsap.set(overlay, { autoAlpha: 1 })
+    overlay.classList.add('is-open')
+    gsap.set(overlayImage, {
+      borderRadius: '24px',
+      transformPerspective: 1000,
+      transformStyle: 'preserve-3d',
+      boxShadow: '0 40px 120px rgba(0,0,0,0.35)',
+    })
+    Flip.from(state, {
+      targets: overlayImage,
+      absolute: true,
+      duration: 0.8,
+      ease: 'power4.inOut',
+      scale: true,
+      onEnter: (elements) => {
+        gsap.fromTo(
+          elements,
+          { rotationX: 5, rotationY: -5, scale: 1, opacity: 0.95 },
+          { rotationX: 0, rotationY: 0, scale: 1.08, opacity: 1, duration: 0.8, ease: 'power4.inOut' }
+        )
+      },
+      onComplete: () => {
+        gsap.to(overlayImage, {
+          y: -8,
+          repeat: -1,
+          yoyo: true,
+          duration: 2,
+          ease: 'sine.inOut',
+        })
+        gsap.to(overlayImage, {
+          borderRadius: '16px',
+          duration: 0.8,
+          ease: 'power4.out',
+        })
+      },
+    })
+  }
+
+  useEffect(() => {
+    if (selectedIndex === null) return
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeOverlay()
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedIndex])
 
   return (
     <section
@@ -115,7 +260,12 @@ export default function BaplatlaDigitalFactory() {
           {DASHBOARDS.map((item, index) => (
             <article key={index} className="bap-digital-card" style={{ '--accent': item.accent }}>
               <div className="bap-digital-card-inner">
-                <div className="bap-digital-screenshot">
+                <div className="bap-digital-screenshot" onClick={(event) => openOverlay(index, event)}>
+                  {item.img ? (
+                    <img src={item.img} alt={item.title} className="bap-digital-screenshot-image" />
+                  ) : (
+                    <div className="bap-digital-screenshot-empty" aria-hidden />
+                  )}
                   <div className="bap-digital-screenshot-frame" />
                   <div className="bap-digital-screenshot-ui" />
                 </div>
@@ -135,6 +285,24 @@ export default function BaplatlaDigitalFactory() {
               </div>
             </article>
           ))}
+        </div>
+      </div>
+
+      <div
+        ref={overlayRef}
+        className="bap-digital-overlay"
+        onClick={(event) => {
+          if (event.target === overlayRef.current) closeOverlay()
+        }}
+      >
+        <div className="bap-digital-overlay-inner">
+          <button className="bap-digital-overlay-close" onClick={closeOverlay} aria-label="Close image preview">
+            <span />
+            <span />
+          </button>
+          <div className="bap-digital-overlay-pane">
+            <img ref={overlayImageRef} src={selectedIndex !== null ? DASHBOARDS[selectedIndex].img : ''} alt="Expanded dashboard" />
+          </div>
         </div>
       </div>
     </section>

@@ -7,7 +7,6 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Why from './components/Why'
 import Expertise from './components/Expertise'
-import DigitalFactory from './components/DigitalFactory'
 import ColdStoreManagement from './components/ColdStoreManagement'
 import GlobalPresence from './components/GlobalPresence'
 import Evolution from './components/Evolution'
@@ -97,7 +96,6 @@ function App() {
           <About />
           <Why />
           <Expertise />
-          <DigitalFactory onOpenColdStore={() => setCurrentPage('coldstore')} />
           <GlobalPresence />
           <Evolution />
           <Leadership />
