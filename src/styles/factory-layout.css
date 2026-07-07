@@ -1,0 +1,197 @@
+/* ═══════════════════════════════════════════════
+   FACTORY LAYOUT  — factory-layout.css
+═══════════════════════════════════════════════ */
+.fl-section {
+  position: relative;
+  padding: 120px 0 100px;
+  background: #090a0e;
+  overflow: hidden;
+}
+.fl-bg { position: absolute; inset: 0; pointer-events: none; }
+.fl-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+.fl-orb-1 { width: 500px; height: 500px; top: -100px; right: -150px; background: radial-gradient(circle, #d4af37, transparent 70%); }
+.fl-orb-2 { width: 400px; height: 400px; bottom: -80px; left: -100px; background: radial-gradient(circle, #3b82f6, transparent 70%); }
+.fl-grid-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.fl-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* Header */
+.fl-header { text-align: center; margin-bottom: 60px; }
+.fl-header-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 100px;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(212,175,55,0.06);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #d4af37; margin-bottom: 24px;
+}
+.fl-header-dot { width: 6px; height: 6px; border-radius: 50%; background: #d4af37; box-shadow: 0 0 8px #d4af37; }
+.fl-headline { font-size: clamp(36px, 6vw, 60px); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 20px; }
+.fl-headline-gold {
+  background: linear-gradient(135deg, #d4af37, #f5d76e, #b8922a);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fl-subline { max-width: 540px; margin: 0 auto; font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* Content layout */
+.fl-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Map */
+.fl-map-wrap {
+  position: relative;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  padding: 20px;
+}
+.fl-map-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+}
+.fl-map-svg {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.4);
+}
+.fl-zone-rect { transition: fill 0.3s, stroke 0.3s; }
+.fl-map-hint {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  margin-top: 12px; justify-content: center;
+}
+
+/* Info Panel */
+.fl-info-panel {
+  position: relative;
+  border-radius: 24px;
+  padding: 32px 28px;
+  overflow: hidden;
+}
+.fl-panel-bg {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.035);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.fl-panel-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--zone-color) 10%, transparent) 0%, transparent 60%);
+}
+.fl-panel-border {
+  position: absolute; inset: 0; border-radius: 24px;
+  border: 1px solid var(--zone-color, rgba(212,175,55,0.3));
+  opacity: 0.4;
+}
+
+.fl-panel-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6); font-size: 20px;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.fl-panel-close:hover { background: rgba(255,255,255,0.12); }
+
+.fl-panel-header {
+  position: relative;
+  display: flex; align-items: center;
+  gap: 14px; margin-bottom: 20px;
+}
+.fl-panel-icon-wrap {
+  width: 52px; height: 52px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;
+}
+.fl-panel-icon { font-size: 24px; }
+.fl-panel-title { position: relative; font-size: 24px; font-weight: 800; }
+
+.fl-panel-desc {
+  position: relative;
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  line-height: 1.7; margin-bottom: 28px;
+}
+
+.fl-panel-stats {
+  position: relative;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-bottom: 24px;
+}
+.fl-panel-stat {
+  text-align: center;
+  padding: 14px 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+}
+.fl-panel-stat-val { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.fl-panel-stat-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+
+.fl-panel-equip {
+  position: relative;
+  padding: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+}
+.fl-panel-equip-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 8px;
+}
+.fl-panel-equip-val { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+/* Legend */
+.fl-legend {
+  padding: 28px 24px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24px;
+}
+.fl-legend-title {
+  font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.6);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+.fl-legend-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 12px; margin-bottom: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.25s, border-color 0.25s;
+}
+.fl-legend-item:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--zc);
+}
+.fl-legend-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--zc); flex-shrink: 0;
+  box-shadow: 0 0 8px var(--zc);
+}
+.fl-legend-icon { font-size: 16px; }
+.fl-legend-name { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+@media (max-width: 1024px) {
+  .fl-content { grid-template-columns: 1fr; }
+}

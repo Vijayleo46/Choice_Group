@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════════
+   STICKY CONTACT  — sticky-contact.css
+═══════════════════════════════════════════════ */
+.sc-wrapper {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+/* Panel */
+.sc-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 20px;
+  overflow: hidden;
+  visibility: hidden;
+}
+.sc-panel-bg {
+  position: absolute; inset: 0;
+  background: rgba(12,13,18,0.92);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+}
+.sc-panel-border {
+  position: absolute; inset: 0; border-radius: 20px;
+  border: 1px solid rgba(212,175,55,0.2);
+}
+
+/* Action buttons */
+.sc-action {
+  position: relative;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.sc-action:hover {
+  background: color-mix(in srgb, var(--ac) 15%, transparent);
+  border-color: var(--ac);
+  transform: translateX(-4px);
+}
+.sc-action-icon { font-size: 18px; flex-shrink: 0; }
+.sc-action-label { white-space: nowrap; }
+
+button.sc-action {
+  background: rgba(255,255,255,0.04);
+  font-family: inherit;
+}
+
+/* FAB */
+.sc-fab {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #b8922a);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(212,175,55,0.3);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+  flex-shrink: 0;
+}
+.sc-fab:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(212,175,55,0.4); }
+.sc-fab--open { background: rgba(255,255,255,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.sc-fab--open:hover { background: rgba(255,255,255,0.15); }
+.sc-fab-icon { font-size: 22px; transition: transform 0.3s; }
+.sc-fab--open .sc-fab-icon { transform: rotate(90deg); font-size: 18px; color: #fff; }
+
+.sc-fab-pulse {
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(212,175,55,0.5);
+  animation: scPulse 2s ease-in-out infinite;
+}
+.sc-fab--open .sc-fab-pulse { display: none; }
+@keyframes scPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .sc-wrapper { bottom: 16px; right: 16px; }
+  .sc-fab { width: 50px; height: 50px; }
+}

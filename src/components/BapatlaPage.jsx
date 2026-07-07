@@ -2,8 +2,21 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import BaplatlaCertifications from './BaplatlaCertifications'
-import BaplatlaDigitalFactory from './BaplatlaDigitalFactory'
-import CoreCapabilities from './CoreCapabilities'
+import KpiDashboard from './KpiDashboard'
+import FactoryTimeline from './FactoryTimeline'
+import FactoryLayout from './FactoryLayout'
+import EquipmentShowcase from './EquipmentShowcase'
+import FoodSafetyWorkflow from './FoodSafetyWorkflow'
+import ExportWorldMap from './ExportWorldMap'
+import Sustainability from './Sustainability'
+import WorkforceExcellence from './WorkforceExcellence'
+import ManufacturingTimeline from './ManufacturingTimeline'
+import FactoryGallery from './FactoryGallery'
+import TestimonialsSlider from './TestimonialsSlider'
+import InteractiveStats from './InteractiveStats'
+import LocationMap from './LocationMap'
+import StickyContact from './StickyContact'
+import PremiumCTA from './PremiumCTA'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -140,34 +153,54 @@ export default function BapatlaPage({ onBackToHome }) {
         </div>
       </section>
 
+      {/* ── Step 1: Live Manufacturing KPI Dashboard ── */}
+      <KpiDashboard />
 
+      {/* ── Step 2: Factory Journey Timeline ── */}
+      <FactoryTimeline />
 
-      {/* ── Core Capabilities ── */}
-      <CoreCapabilities />
+      {/* ── Step 3: Interactive Factory Layout ── */}
+      <FactoryLayout />
+
+      {/* ── Step 4: Equipment Showcase ── */}
+      <EquipmentShowcase />
+
+      {/* ── Step 5: Food Safety Workflow ── */}
+      <FoodSafetyWorkflow />
+
+      {/* ── Step 6: Export Around the World ── */}
+      <ExportWorldMap />
+
+      {/* ── Step 7: Sustainability ── */}
+      <Sustainability />
+
+      {/* ── Step 8: Workforce Excellence ── */}
+      <WorkforceExcellence />
+
+      {/* ── Step 9: Manufacturing Timeline ── */}
+      <ManufacturingTimeline />
+
+      {/* ── Step 10: Factory Gallery ── */}
+      <FactoryGallery />
+
+      {/* ── Step 11: Testimonials ── */}
+      <TestimonialsSlider />
+
+      {/* ── Step 12: Interactive Statistics ── */}
+      <InteractiveStats />
+
+      {/* ── Step 13: Google Map Section ── */}
+      <LocationMap />
+
 
       {/* ── Certifications ── */}
       <BaplatlaCertifications />
 
-      {/* ── Digital Factory Platform ── */}
-      <BaplatlaDigitalFactory />
+      {/* ── Step 15: Premium Final CTA ── */}
+      <PremiumCTA />
 
-      {/* ── CTA ── */}
-      <section className="bp-cta">
-        <div className="bp-cta-inner">
-          <h2 className="bp-cta-title">Partner with a World-Class Facility</h2>
-          <p className="bp-cta-sub">
-            Connect with the Bapatla plant team for export enquiries, facility tours, or supply agreements.
-          </p>
-          <div className="bp-cta-actions">
-            <button className="bp-cta-btn-primary" onClick={onBackToHome}>
-              <span>Contact Us</span>
-            </button>
-            <button className="bp-cta-btn-secondary" onClick={onBackToHome}>
-              <span>← Back to Home</span>
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* ── Step 14: Sticky Contact Panel ── */}
+      <StickyContact />
 
     </div>
   )

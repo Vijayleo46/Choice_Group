@@ -1,0 +1,159 @@
+/* ═══════════════════════════════════════════════
+   FOOD SAFETY WORKFLOW  — food-safety-workflow.css
+═══════════════════════════════════════════════ */
+.fsw-section {
+  position: relative;
+  padding: 120px 0 100px;
+  background: #090a0e;
+  overflow: hidden;
+}
+.fsw-bg { position: absolute; inset: 0; pointer-events: none; }
+.fsw-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+.fsw-orb-1 { width: 500px; height: 500px; top: -80px; right: -150px; background: radial-gradient(circle, #22c55e, transparent 70%); }
+.fsw-orb-2 { width: 400px; height: 400px; bottom: -60px; left: -120px; background: radial-gradient(circle, #d4af37, transparent 70%); }
+.fsw-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+
+.fsw-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+
+/* Header */
+.fsw-header { text-align: center; margin-bottom: 72px; }
+.fsw-header-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 100px;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(212,175,55,0.06);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #d4af37; margin-bottom: 24px;
+}
+.fsw-header-dot { width: 6px; height: 6px; border-radius: 50%; background: #d4af37; box-shadow: 0 0 8px #d4af37; }
+.fsw-headline { font-size: clamp(36px, 6vw, 60px); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 20px; }
+.fsw-headline-accent {
+  background: linear-gradient(135deg, #d4af37, #f5d76e, #b8922a);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fsw-subline { max-width: 560px; margin: 0 auto; font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* Flow container */
+.fsw-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212,175,55,0.3) transparent;
+}
+
+/* Each step wrapper */
+.fsw-step-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Step card */
+.fsw-step {
+  position: relative;
+  width: 200px;
+  padding: 28px 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.fsw-step:hover { transform: translateY(-8px) scale(1.04); }
+.fsw-step-bg {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.035);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.fsw-step-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--step-color) 14%, transparent) 0%, transparent 65%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.fsw-step:hover .fsw-step-glow { opacity: 1; }
+.fsw-step-border {
+  position: absolute; inset: 0; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color 0.3s;
+}
+.fsw-step:hover .fsw-step-border { border-color: var(--step-color); }
+
+.fsw-step-num {
+  position: relative;
+  font-size: 11px; font-weight: 800;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.fsw-step-icon-wrap {
+  position: relative;
+  width: 52px; height: 52px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid;
+  margin-bottom: 14px;
+}
+.fsw-step-icon { font-size: 22px; }
+.fsw-step-status {
+  position: relative;
+  display: inline-flex;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+  border: 1px solid;
+  margin-bottom: 10px;
+}
+.fsw-step-title {
+  position: relative;
+  font-size: 16px; font-weight: 700; color: #fff;
+  margin-bottom: 8px;
+}
+.fsw-step-desc {
+  position: relative;
+  font-size: 11.5px; color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+
+/* Connector */
+.fsw-connector {
+  display: flex; align-items: center;
+  padding: 0 6px; flex-shrink: 0;
+  position: relative;
+}
+.fsw-connector-line {
+  width: 32px; height: 1px;
+  background: linear-gradient(90deg, rgba(212,175,55,0.4), rgba(212,175,55,0.1));
+}
+.fsw-connector-arrow {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+}
+
+/* Cert bar */
+.fsw-cert-bar {
+  display: flex; flex-wrap: wrap;
+  gap: 12px; justify-content: center;
+  margin-top: 60px;
+}
+.fsw-cert-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,175,55,0.2);
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  transition: background 0.25s, border-color 0.25s;
+}
+.fsw-cert-pill:hover {
+  background: rgba(212,175,55,0.08);
+  border-color: rgba(212,175,55,0.5);
+}
+.fsw-cert-check { color: #22c55e; font-weight: 700; }

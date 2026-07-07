@@ -10,54 +10,63 @@ const DASHBOARDS = [
   {
     title: 'Executive Dashboard',
     desc: 'Real-time KPIs, production analytics, shift monitoring and executive business intelligence.',
+    detail: 'A consolidated command center for senior leadership, with live plant performance, throughput and quality metrics.',
     img: '/IC-executive-portfolio-dashboard-example.png',
     accent: 'linear-gradient(135deg, #2c3e8a, #6b5bde)',
   },
   {
     title: 'Cold Store Management',
     desc: 'Inventory tracking, pallet locations, stock movement, shipment control and cold storage monitoring.',
+    detail: 'Complete cold-chain visibility for inventory, temperature control and shipment readiness across all storage zones.',
     img: '/guide-to-cold-storage.webp',
     accent: 'linear-gradient(135deg, #1f4769, #1fbfa8)',
   },
   {
     title: 'Process Overview',
     desc: 'Shrimp processing workflow from receiving through dispatch.',
+    detail: 'A step-by-step look at material flow, process stages and quality gates from raw intake to finished export-ready product.',
     img: '/f09f4253-0f52-4877-98fd-ae31fdb4688f.jpg',
     accent: 'linear-gradient(135deg, #7e4bb8, #ff8f49)',
   },
   {
     title: 'Production Dashboard',
     desc: 'Monitor contractor productivity, batches, machine performance and daily production metrics.',
+    detail: 'Operational visibility into batch counts, machine utilization, contractor output and performance versus target.',
     img: '/001824955-1.jpeg',
     accent: 'linear-gradient(135deg, #19345e, #2dc78f)',
   },
   {
     title: 'PlantOS Integration',
     desc: 'Machine monitoring, conveyors, PLC connectivity, alarms and production tracking.',
+    detail: 'Real-time plant floor integration with sensors, PLCs, alarms and conveyor systems for faster response and uptime.',
     img: '/fresh-shrimp-lying-black-net-which-water-farm-370270568.webp',
     accent: 'linear-gradient(135deg, #2c3e8a, #ff8f49)',
   },
   {
     title: 'PPC Dashboard',
     desc: 'Division-wise contractor dashboards with Romeo, Bravo, Golf and Papa production statistics.',
+    detail: 'Planner and production control dashboards for each contractor division, delivering clarity across schedules and outcomes.',
     img: '/ChatGPT Image Jul 6, 2026, 04_10_20 PM.png',
     accent: 'linear-gradient(135deg, #321a73, #6b5bde)',
   },
   {
     title: 'Inventory Dashboard',
     desc: 'Stock management, shipments, weight tracking, pallet management and export tools.',
+    detail: 'A unified inventory command panel for raw materials, finished goods, shipment preparation and export readiness.',
     img: '/ChatGPT Image Jul 6, 2026, 04_24_58 PM.png',
     accent: 'linear-gradient(135deg, #0d4f6c, #1fbfa8)',
   },
   {
     title: 'Operations Dashboard',
     desc: 'Cold store operations, approvals, throughput, excess returns and processing statistics.',
+    detail: 'Day-to-day operational oversight for cold storage, approvals, throughput efficiency, and return management.',
     img: '/ChatGPT Image Jul 6, 2026, 04_44_32 PM.png',
     accent: 'linear-gradient(135deg, #3b2f75, #ff8f49)',
   },
   {
     title: 'Analytics Dashboard',
     desc: 'Interactive charts, shift comparison, production trends, product breakdown and business insights.',
+    detail: 'Deep analytics with trend comparisons, SKU performance, shift variance and insights for smarter planning.',
     img: '/ChatGPT Image Jul 6, 2026, 04_54_23 PM.png',
     accent: 'linear-gradient(135deg, #1f4769, #7e4bb8)',
   },
@@ -254,6 +263,10 @@ export default function BaplatlaDigitalFactory() {
             A complete suite of intelligent dashboards powering every stage of production—from receiving to dispatch,
             inventory, quality control, and executive analytics.
           </p>
+          <p>
+            Explore every digital section on this screen: executive control, cold store monitoring, process overview, production tracking,
+            PlantOS integration, PPC reporting, inventory management, operations supervision and analytics.
+          </p>
         </div>
 
         <div className="bap-digital-grid">
@@ -303,6 +316,12 @@ export default function BaplatlaDigitalFactory() {
           <div className="bap-digital-overlay-pane">
             <img ref={overlayImageRef} src={selectedIndex !== null ? DASHBOARDS[selectedIndex].img : ''} alt="Expanded dashboard" />
           </div>
+          {selectedIndex !== null && (
+            <div className="bap-digital-overlay-copy">
+              <h3>{DASHBOARDS[selectedIndex].title}</h3>
+              <p>{DASHBOARDS[selectedIndex].detail || DASHBOARDS[selectedIndex].desc}</p>
+            </div>
+          )}
         </div>
       </div>
     </section>

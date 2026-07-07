@@ -1,0 +1,622 @@
+/* ═══════════════════════════════════════════════
+   PREMIUM FACTORY TIMELINE  — factory-timeline.css
+   Style Inspiration: Apple, Tesla, Siemens, ABB
+   ═══════════════════════════════════════════════ */
+
+/* ── Custom Properties ── */
+:root {
+  --color-dark-bg: #071320;
+  --color-cyan: #00f0ff;
+  --color-blue: #0066ff;
+  --color-emerald: #10b981;
+  --color-purple: #8b5cf6;
+  --color-orange: #f97316;
+  
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  
+  --glow-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ── Keyframes ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.2; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+  100% { transform: scale(0.9); opacity: 0.2; }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-30px) translateX(15px); }
+}
+
+/* ── Section Container ── */
+.fj-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-dark-bg);
+  padding: 120px 0 100px;
+  overflow: hidden;
+  color: #ffffff;
+  z-index: 10;
+}
+
+/* ── Background Aesthetics ── */
+.fj-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fj-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent);
+}
+
+/* Floating Lights */
+.fj-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.12;
+}
+.fj-orb-blue {
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle, var(--color-blue), transparent 70%);
+}
+.fj-orb-cyan {
+  width: 500px;
+  height: 500px;
+  bottom: 10%;
+  right: -10%;
+  background: radial-gradient(circle, var(--color-cyan), transparent 70%);
+}
+
+/* Floating Ambient Particles */
+.fj-particles-container {
+  position: absolute;
+  inset: 0;
+}
+.fj-particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--color-cyan);
+  filter: drop-shadow(0 0 4px var(--color-cyan));
+  opacity: 0.3;
+  animation: particleFloat 10s ease-in-out infinite;
+}
+
+/* ── Inner Wrapper ── */
+.fj-inner {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Header ── */
+.fj-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+
+.fj-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  background: rgba(0, 102, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  margin-bottom: 20px;
+}
+
+.fj-header-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-cyan);
+  box-shadow: 0 0 10px var(--color-cyan);
+}
+
+.fj-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+
+.fj-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Progress Bar Indicator (Desktop) ── */
+.fj-progress-container-outer {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: none; /* Desktop only */
+}
+
+.fj-progress-bar-inner {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-blue), var(--color-cyan));
+  box-shadow: 0 0 8px var(--color-cyan);
+  transition: width 0.1s ease-out;
+}
+
+/* ── Timeline Showcase Area ── */
+.fj-timeline-viewport {
+  position: relative;
+  width: 100%;
+}
+
+.fj-timeline-track {
+  position: relative;
+}
+
+/* ── Connecting Lines ── */
+.fj-horizontal-line {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  display: none; /* Desktop only */
+  z-index: 1;
+}
+
+.fj-horizontal-line-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-blue), var(--color-cyan));
+  box-shadow: 0 0 10px var(--color-cyan);
+}
+
+.fj-vertical-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+
+.fj-vertical-line-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, var(--color-blue), var(--color-cyan));
+  transform-origin: top center;
+}
+
+/* ── Stages Grid / Track Layout ── */
+.fj-stages-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  z-index: 2;
+}
+
+/* ── Card Wrapper & Line Nodes ── */
+.fj-card-wrapper {
+  position: relative;
+  display: flex;
+  padding-left: 60px;
+  width: 100%;
+}
+
+/* Timeline Nodes */
+.fj-timeline-node {
+  position: absolute;
+  left: 21px;
+  top: 40px;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  z-index: 5;
+}
+
+.fj-node-dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--stage-color, var(--color-blue));
+  border: 3px solid var(--color-dark-bg);
+  box-shadow: 0 0 12px var(--stage-color, var(--color-blue));
+  transition: transform 0.3s ease;
+}
+
+.fj-node-pulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--stage-color, var(--color-blue));
+  opacity: 0;
+  animation: pulseGlow 2.5s infinite;
+}
+
+.fj-card-wrapper:hover .fj-node-dot,
+.fj-card-active .fj-node-dot {
+  transform: scale(1.3);
+}
+
+.fj-card-wrapper:hover .fj-node-pulse,
+.fj-card-active .fj-node-pulse {
+  opacity: 1;
+}
+
+/* ── Processing Card Styles ── */
+.fj-card {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.fj-card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  transition: var(--transition-smooth);
+  pointer-events: none;
+}
+
+.fj-card-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--card-gradient);
+  opacity: 0.1;
+  transition: var(--transition-smooth);
+}
+
+.fj-card-content {
+  position: relative;
+  padding: 30px;
+  z-index: 2;
+}
+
+/* Float Icons */
+.fj-icon-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  animation: float 5s ease-in-out infinite;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.03);
+}
+
+.fj-icon-glow {
+  position: absolute;
+  inset: -5px;
+  border-radius: 22px;
+  background: var(--stage-color);
+  opacity: 0;
+  filter: blur(8px);
+  transition: var(--transition-smooth);
+}
+
+.fj-icon-sphere {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.fj-icon-svg {
+  color: var(--stage-color, var(--color-cyan));
+  filter: drop-shadow(0 0 8px var(--stage-color));
+  transition: var(--transition-smooth);
+}
+
+/* Step Number tag */
+.fj-step-number {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--stage-color, var(--color-cyan));
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.fj-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  transition: var(--transition-smooth);
+}
+
+.fj-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* Card Hover States */
+.fj-card-wrapper:hover .fj-card,
+.fj-card-active .fj-card {
+  transform: translateY(-8px);
+  background: var(--glass-bg-hover);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(0, 240, 255, 0.04);
+}
+
+.fj-card-wrapper:hover .fj-card-border,
+.fj-card-active .fj-card-border {
+  border-color: var(--stage-color);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.fj-card-wrapper:hover .fj-icon-glow,
+.fj-card-active .fj-icon-glow {
+  opacity: 0.15;
+}
+
+.fj-card-wrapper:hover .fj-icon-container,
+.fj-card-active .fj-icon-container {
+  border-color: var(--stage-color);
+  box-shadow: 0 0 20px var(--stage-glow);
+}
+
+.fj-card-wrapper:hover .fj-card-title,
+.fj-card-active .fj-card-title {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+
+/* ── KPI Cards Section ── */
+.fj-kpi-section {
+  position: relative;
+  margin-top: 100px;
+  padding-top: 80px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fj-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* Glass KPI Card */
+.fj-kpi-card {
+  position: relative;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.fj-kpi-card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(0, 240, 255, 0.04), transparent 60%);
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.fj-kpi-card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  transition: var(--transition-smooth);
+}
+
+.fj-kpi-card-inner {
+  position: relative;
+  padding: 36px 30px;
+  z-index: 2;
+}
+
+.fj-kpi-val-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.fj-kpi-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(36px, 5vw, 48px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fj-kpi-suffix {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-cyan);
+  margin-left: 6px;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.fj-kpi-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 6px 0;
+}
+
+.fj-kpi-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+/* KPI Hover State */
+.fj-kpi-card:hover {
+  transform: translateY(-6px);
+  background: var(--glass-bg-hover);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(0, 102, 255, 0.05);
+}
+
+.fj-kpi-card:hover .fj-kpi-card-glow {
+  opacity: 1;
+}
+
+.fj-kpi-card:hover .fj-kpi-card-border {
+  border-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
+}
+
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE DESIGN BREAKPOINTS
+   ═══════════════════════════════════════════════ */
+
+/* ── TABLET BREAKPOINT (min-width: 768px) ── */
+@media (min-width: 768px) {
+  
+  .fj-stages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  
+  /* Hide connection lines on tablet grid */
+  .fj-vertical-line {
+    display: none;
+  }
+  
+  .fj-card-wrapper {
+    padding-left: 0;
+  }
+  
+  .fj-timeline-node {
+    display: none;
+  }
+  
+  /* KPI 2 Columns */
+  .fj-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ── DESKTOP BREAKPOINT (min-width: 1024px) ── */
+@media (min-width: 1024px) {
+  .fj-section {
+    padding: 100px 0 140px;
+  }
+  
+  .fj-progress-container-outer {
+    display: block;
+  }
+  
+  .fj-horizontal-line {
+    display: block;
+  }
+
+  .fj-vertical-line {
+    display: none;
+  }
+
+  .fj-timeline-viewport {
+    width: 100%;
+    overflow: visible;
+  }
+
+  /* Horizontal scrolling strip */
+  .fj-timeline-track {
+    display: flex;
+    padding: 60px 0;
+  }
+
+  .fj-stages-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 50px;
+    padding: 0 100px;
+  }
+
+  .fj-card-wrapper {
+    flex-shrink: 0;
+    width: 320px;
+    padding-left: 0;
+  }
+
+  .fj-timeline-node {
+    display: block;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  /* KPI 4 Columns */
+  .fj-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}

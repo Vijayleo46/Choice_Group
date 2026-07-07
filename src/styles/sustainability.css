@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════
+   SUSTAINABILITY  — sustainability.css
+═══════════════════════════════════════════════ */
+.sust-section {
+  position: relative;
+  padding: 120px 0 100px;
+  background: #090a0e;
+  overflow: hidden;
+}
+.sust-bg { position: absolute; inset: 0; pointer-events: none; }
+.sust-orb { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.1; }
+.sust-orb-1 { width: 500px; height: 500px; top: -80px; left: -180px; background: radial-gradient(circle, #22c55e, transparent 70%); }
+.sust-orb-2 { width: 450px; height: 450px; bottom: -100px; right: -160px; background: radial-gradient(circle, #00C6A7, transparent 70%); }
+.sust-grid-lines {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(34,197,94,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.sust-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* Header */
+.sust-header { text-align: center; margin-bottom: 64px; }
+.sust-header-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 100px;
+  border: 1px solid rgba(34,197,94,0.3);
+  background: rgba(34,197,94,0.06);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #22c55e; margin-bottom: 24px;
+}
+.sust-header-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.sust-headline { font-size: clamp(36px, 6vw, 60px); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 20px; }
+.sust-headline-green {
+  background: linear-gradient(135deg, #22c55e, #4ade80, #16a34a);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.sust-subline { max-width: 540px; margin: 0 auto; font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* Grid */
+.sust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 1024px) { .sust-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .sust-grid { grid-template-columns: 1fr; } }
+
+/* Card */
+.sust-card {
+  position: relative;
+  padding: 30px 26px;
+  border-radius: 22px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+.sust-card:hover { transform: translateY(-8px) scale(1.02); }
+.sust-card-bg {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.035);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+.sust-card-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top left, color-mix(in srgb, var(--sust-color) 12%, transparent) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.sust-card:hover .sust-card-glow { opacity: 1; }
+.sust-card-border {
+  position: absolute; inset: 0; border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color 0.3s;
+}
+.sust-card:hover .sust-card-border { border-color: var(--sust-color); }
+
+/* Content */
+.sust-card-top {
+  position: relative;
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.sust-icon-wrap {
+  width: 56px; height: 56px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid; flex-shrink: 0;
+}
+.sust-icon { font-size: 24px; }
+.sust-metric-wrap { text-align: right; }
+.sust-metric { font-size: 28px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.sust-metric-label { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; }
+
+.sust-title { position: relative; font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.sust-desc { position: relative; font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; margin-bottom: 20px; }
+
+/* Progress */
+.sust-progress-wrap {
+  position: relative;
+  display: flex; align-items: center; gap: 10px;
+}
+.sust-progress-track {
+  flex: 1; height: 4px;
+  background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden;
+}
+.sust-progress-fill {
+  height: 100%; border-radius: 100px;
+  width: 0%;
+  box-shadow: 0 0 8px var(--sust-color, #22c55e);
+}
+.sust-progress-pct { font-size: 12px; font-weight: 700; flex-shrink: 0; }

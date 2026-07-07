@@ -1,0 +1,168 @@
+/* ═══════════════════════════════════════════════
+   FACTORY GALLERY  — factory-gallery.css
+═══════════════════════════════════════════════ */
+.fgal-section {
+  position: relative;
+  padding: 120px 0 100px;
+  background: linear-gradient(180deg, #0a0c10 0%, #090a0e 100%);
+  overflow: hidden;
+}
+.fgal-bg { position: absolute; inset: 0; pointer-events: none; }
+.fgal-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.1; }
+.fgal-orb-1 { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: radial-gradient(circle, #d4af37, transparent 70%); }
+.fgal-grid-lines {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.fgal-inner { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+/* Header */
+.fgal-header { text-align: center; margin-bottom: 60px; }
+.fgal-header-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 100px;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(212,175,55,0.06);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #d4af37; margin-bottom: 24px;
+}
+.fgal-header-dot { width: 6px; height: 6px; border-radius: 50%; background: #d4af37; box-shadow: 0 0 8px #d4af37; }
+.fgal-headline { font-size: clamp(36px, 6vw, 60px); font-weight: 800; line-height: 1.1; color: #fff; margin-bottom: 20px; }
+.fgal-headline-gold {
+  background: linear-gradient(135deg, #d4af37, #f5d76e, #b8922a);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fgal-subline { max-width: 480px; margin: 0 auto; font-size: 16px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* Grid */
+.fgal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 14px;
+}
+@media (max-width: 900px) { .fgal-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .fgal-grid { grid-template-columns: 1fr; } }
+
+/* Tile */
+.fgal-tile {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s;
+}
+.fgal-tile:hover { transform: scale(1.03); border-color: rgba(212,175,55,0.4); }
+.fgal-tile--wide { grid-column: span 2; }
+
+.fgal-tile-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  background: rgba(255,255,255,0.05);
+}
+.fgal-tile:hover .fgal-tile-img { transform: scale(1.08); }
+
+.fgal-tile-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 16px;
+  opacity: 0.7; transition: opacity 0.3s;
+}
+.fgal-tile:hover .fgal-tile-overlay { opacity: 1; }
+
+.fgal-tile-icon { font-size: 20px; margin-bottom: 4px; }
+.fgal-tile-label { font-size: 14px; font-weight: 700; color: #fff; }
+.fgal-tile-expand {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff;
+  opacity: 0; transform: scale(0.7);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.fgal-tile:hover .fgal-tile-expand { opacity: 1; transform: scale(1); }
+.fgal-tile-shimmer {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%);
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.fgal-tile:hover .fgal-tile-shimmer {
+  opacity: 1;
+  animation: fgalShimmer 1.2s ease;
+}
+@keyframes fgalShimmer {
+  from { background-position: 200% 200%; }
+  to   { background-position: -200% -200%; }
+}
+
+/* Lightbox */
+.fgal-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+}
+.fgal-lightbox-inner {
+  position: relative;
+  max-width: 90vw; max-height: 90vh;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+.fgal-lb-img {
+  max-width: 100%; max-height: 75vh;
+  border-radius: 20px;
+  object-fit: contain;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+}
+.fgal-lb-close {
+  position: absolute; top: -50px; right: 0;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff; font-size: 24px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.fgal-lb-close:hover { background: rgba(255,255,255,0.15); }
+.fgal-lb-prev, .fgal-lb-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff; font-size: 28px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.fgal-lb-prev:hover, .fgal-lb-next:hover { background: rgba(255,255,255,0.15); }
+.fgal-lb-prev { left: -64px; }
+.fgal-lb-next { right: -64px; }
+.fgal-lb-caption {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 20px;
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  width: 100%;
+}
+.fgal-lb-icon { font-size: 24px; flex-shrink: 0; }
+.fgal-lb-title { font-size: 16px; font-weight: 700; color: #fff; }
+.fgal-lb-desc { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.fgal-lb-counter { margin-left: auto; font-size: 13px; color: rgba(255,255,255,0.3); flex-shrink: 0; }
