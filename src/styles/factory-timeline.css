@@ -12,10 +12,10 @@
   --color-purple: #8b5cf6;
   --color-orange: #f97316;
   
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-bg-hover: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.07);
-  --glass-border-hover: rgba(255, 255, 255, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg-hover: rgba(255, 255, 255, 0.98);
+  --glass-border: rgba(212, 175, 55, 0.3);
+  --glass-border-hover: rgba(212, 175, 55, 0.6);
   
   --glow-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
   --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -55,6 +55,10 @@
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  background-image: url("/ChatGPT Image Jun 12, 2026, 12_44_16 PM.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
 }
 
 .fj-grid-overlay {
@@ -380,7 +384,7 @@
   font-family: 'Outfit', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1a1a2e;
   margin-bottom: 12px;
   transition: var(--transition-smooth);
 }
@@ -388,7 +392,7 @@
 .fj-card-desc {
   font-size: 14px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(26, 26, 46, 0.7);
   margin: 0;
 }
 
@@ -482,9 +486,9 @@
   font-family: 'Outfit', sans-serif;
   font-size: clamp(36px, 5vw, 48px);
   font-weight: 800;
-  color: #ffffff;
+  color: #1a1a2e;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #3a3a5e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -494,21 +498,21 @@
   font-family: 'Outfit', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-cyan);
+  color: #c9a84c;
   margin-left: 6px;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 .fj-kpi-label {
   font-size: 16px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a2e;
   margin: 0 0 6px 0;
 }
 
 .fj-kpi-sub {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(26, 26, 46, 0.6);
   margin: 0;
 }
 

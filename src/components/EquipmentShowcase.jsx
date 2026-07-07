@@ -108,6 +108,16 @@ export default function EquipmentShowcase() {
   return (
     <section ref={sectionRef} id="equipment-showcase" className="eq-section">
       <div className="eq-bg">
+        {/* Video Background */}
+        <video
+          className="eq-video-bg"
+          src="/Drone_video_industrial_facility_…_202606251808.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="eq-video-overlay" />
         <div className="eq-orb eq-orb-1" />
         <div className="eq-orb eq-orb-2" />
         <div className="eq-mesh" />

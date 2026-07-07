@@ -22,90 +22,90 @@ const STAGES = [
     number: '01',
     title: 'Receiving',
     desc: 'Fresh shrimp received from certified farms.',
-    color: '#0066ff',
+    color: '#d4af37',
     icon: Truck,
-    gradient: 'linear-gradient(135deg, rgba(0, 102, 255, 0.15) 0%, rgba(0, 240, 255, 0.03) 100%)',
-    glow: 'rgba(0, 102, 255, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(184, 146, 42, 0.03) 100%)',
+    glow: 'rgba(212, 175, 55, 0.35)'
   },
   {
     id: 2,
     number: '02',
     title: 'Quality Inspection',
     desc: 'Raw material inspected by QC experts.',
-    color: '#00f0ff',
+    color: '#c9a84c',
     icon: ClipboardCheck,
-    gradient: 'linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(0, 102, 255, 0.03) 100%)',
-    glow: 'rgba(0, 240, 255, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, rgba(212, 175, 55, 0.03) 100%)',
+    glow: 'rgba(201, 168, 76, 0.35)'
   },
   {
     id: 3,
     number: '03',
     title: 'Grading',
     desc: 'Automated grading based on size and quality.',
-    color: '#3b82f6',
+    color: '#b8922a',
     icon: Sliders,
-    gradient: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.03) 100%)',
-    glow: 'rgba(59, 130, 246, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(184, 146, 42, 0.15) 0%, rgba(201, 168, 76, 0.03) 100%)',
+    glow: 'rgba(184, 146, 42, 0.35)'
   },
   {
     id: 4,
     number: '04',
     title: 'Peeling & Cleaning',
     desc: 'Hygienic preparation under strict standards.',
-    color: '#00f0ff',
+    color: '#9c7c25',
     icon: Sparkles,
-    gradient: 'linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(16, 185, 129, 0.03) 100%)',
-    glow: 'rgba(0, 240, 255, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(156, 124, 37, 0.15) 0%, rgba(184, 146, 42, 0.03) 100%)',
+    glow: 'rgba(156, 124, 37, 0.35)'
   },
   {
     id: 5,
     number: '05',
     title: 'Processing',
     desc: 'Cutting, washing and value addition.',
-    color: '#10b981',
+    color: '#d4af37',
     icon: Cpu,
-    gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(0, 240, 255, 0.03) 100%)',
-    glow: 'rgba(16, 185, 129, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(184, 146, 42, 0.03) 100%)',
+    glow: 'rgba(212, 175, 55, 0.35)'
   },
   {
     id: 6,
     number: '06',
     title: 'Cooking / IQF Freezing',
     desc: 'Rapid freezing to preserve freshness.',
-    color: '#06b6d4',
+    color: '#c9a84c',
     icon: Snowflake,
-    gradient: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.03) 100%)',
-    glow: 'rgba(6, 182, 212, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, rgba(212, 175, 55, 0.03) 100%)',
+    glow: 'rgba(201, 168, 76, 0.35)'
   },
   {
     id: 7,
     number: '07',
     title: 'Packaging',
     desc: 'Automated packing and labeling.',
-    color: '#8b5cf6',
+    color: '#b8922a',
     icon: Package,
-    gradient: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(249, 115, 22, 0.03) 100%)',
-    glow: 'rgba(139, 92, 246, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(184, 146, 42, 0.15) 0%, rgba(201, 168, 76, 0.03) 100%)',
+    glow: 'rgba(184, 146, 42, 0.35)'
   },
   {
     id: 8,
     number: '08',
     title: 'Cold Storage',
     desc: 'Temperature-controlled storage facility.',
-    color: '#0284c7',
+    color: '#9c7c25',
     icon: Warehouse,
-    gradient: 'linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(0, 240, 255, 0.03) 100%)',
-    glow: 'rgba(2, 132, 199, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(156, 124, 37, 0.15) 0%, rgba(184, 146, 42, 0.03) 100%)',
+    glow: 'rgba(156, 124, 37, 0.35)'
   },
   {
     id: 9,
     number: '09',
     title: 'Export Dispatch',
     desc: 'Container loading and worldwide shipment.',
-    color: '#f97316',
+    color: '#d4af37',
     icon: Ship,
-    gradient: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(59, 130, 246, 0.03) 100%)',
-    glow: 'rgba(249, 115, 22, 0.35)'
+    gradient: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(184, 146, 42, 0.03) 100%)',
+    glow: 'rgba(212, 175, 55, 0.35)'
   }
 ]
 
